@@ -25,9 +25,12 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	UCameraComponent* GetCamera() { return Camera; }
+	
+	UPROPERTY(VisibleAnywhere, Category = "Ability")
+	TObjectPtr<UASAbilityComponent> AbilityComponent;
 
-	UPROPERTY(Replicated, BlueprintReadWrite)
-	float InfectionDensity = 0;
+	UPROPERTY(VisibleAnywhere, Category = "Attribute")
+	TObjectPtr<UASAttributeSetComponent> Attributes;
 	
 protected:
 	
@@ -62,11 +65,6 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UKSInputConfig* InputConfig;
-
-	UPROPERTY(VisibleAnywhere, Category = "Ability")
-	TObjectPtr<UASAbilityComponent> AbilityComponent;
 	
-	UPROPERTY(VisibleAnywhere, Category = "Attribute")
-	TObjectPtr<UASAttributeSetComponent> Attributes;
 };
 

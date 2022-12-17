@@ -63,5 +63,9 @@
 /DBUILD_ICON_FILE_NAME="\"..\\Build\\Windows\\Resources\\Default.ico\""
 /DPROJECT_COPYRIGHT_STRING="Fill out your copyright notice in the Description page of Project Settings."
 /DPROJECT_PRODUCT_IDENTIFIER=Klems
-/fo "C:\Users\llou\Documents\Unreal Projects\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RD\Default.rc2.res"
+<<<<<<< HEAD
+/fo "C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RD\Default.rc2.res"
+=======
+/fo "C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RD\Default.rc2.res"
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
 "..\Build\Windows\Resources\Default.rc2"

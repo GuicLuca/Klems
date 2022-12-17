@@ -26,6 +26,15 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	UCameraComponent* GetCamera() { return Camera; }
+
+	UFUNCTION()
+	void SetInfectedMode();
+
+	UFUNCTION(BlueprintCallable)
+	void startInfection();
+
+	UFUNCTION(BlueprintCallable)
+	void stopInfection();
 	
 	UPROPERTY(VisibleAnywhere, Category = "Ability")
 	TObjectPtr<UASAbilityComponent> AbilityComponent;
@@ -33,13 +42,29 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Attribute")
 	TObjectPtr<UASAttributeSetComponent> Attributes;
 
+
 	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category = "Combat")
 	TObjectPtr<UKSCombatComponent> CombatComponent;
+
+	UPROPERTY(EditDefaultsOnly)
+	TArray<FGameplayTag> AbilitiesRemovedByInfection;
+
+	UPROPERTY(EditDefaultsOnly)
+	TArray<TSubclassOf<UASAbility>> AbilitiesGrantedByInfection;
+
 	
 protected:
 	
 	UFUNCTION()
 	void OnSpeedChanged(float OldValue, float NewValue);
+	
+	UFUNCTION()
+	void OnInfectChanged(float OldValue, float NewValue);
+
+	UFUNCTION(Server, Reliable)
+	void ServerSetInfectedMode();
+
+	
 	
 	virtual void BeginPlay() override;
 

@@ -19,7 +19,7 @@ AKSInfectionTile::AKSInfectionTile()
 
 	Tile = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Tile"));
 	Tile->SetupAttachment(RootComponent);
-	Tile->OnComponentHit.AddDynamic(this, &AKSInfectionTile::OnCompHit);
+	//Tile->OnComponentHit.AddDynamic(this, &AKSInfectionTile::OnCompHit);
 }
 
 void AKSInfectionTile::addInfectionDensity(float newValue)
@@ -68,7 +68,12 @@ void AKSInfectionTile::ServerInfectPlayer_Implementation(AKSCharacter* Player)
 {
 	if(!HasAuthority()) return;
 
-	//Player->Attributes->GetAttribute(TAG_Attribute_Infection)
+	auto InfectionAttribute = Player->Attributes->GetAttribute(TAG_Attribute_Infection);
+
+	if(!ensureAlwaysMsgf(InfectionAttribute, TEXT("No infection attribute, your character is ill formated !"))) return;
+
+	InfectionAttribute->SetCurrentValue(InfectionAttribute->GetCurrentValue()+this->InfectionDensity);
+		
 }
 
 // Called when the game starts or when spawned

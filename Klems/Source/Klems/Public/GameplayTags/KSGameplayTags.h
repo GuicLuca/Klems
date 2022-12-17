@@ -25,3 +25,6 @@ UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_Ability_Punch);
 UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_Attribute_Health);
 UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_Attribute_Infection);
 UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_Attribute_Speed);
+
+// Native modifiers Gameplay Tags
+UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_Modifier_Infection);

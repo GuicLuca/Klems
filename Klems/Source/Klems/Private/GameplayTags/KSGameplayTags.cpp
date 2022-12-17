@@ -20,3 +20,6 @@ UE_DEFINE_GAMEPLAY_TAG(TAG_Ability_Reload, "Ability.Utils.Reload")
 UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_Health, "Attribute.Life.Health")
 UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_Infection, "Attribute.Life.Infection")
 UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_Speed, "Attribute.Movement.Speed")
+
+UE_DEFINE_GAMEPLAY_TAG(TAG_Modifier_Infection, "Modifier.Life.Infection")
+

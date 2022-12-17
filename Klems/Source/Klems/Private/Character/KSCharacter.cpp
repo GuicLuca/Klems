@@ -51,6 +51,43 @@ void AKSCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLife
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 }
 
+void AKSCharacter::SetInfectedMode()
+{
+	ServerSetInfectedMode();
+}
+
+void AKSCharacter::startInfection()
+{
+	GetWorldTimerManager().SetTimer()
+}
+
+void AKSCharacter::stopInfection()
+{
+}
+
+void AKSCharacter::OnInfectChanged(float OldValue, float NewValue)
+{
+	SetInfectedMode();
+}
+
+void AKSCharacter::ServerSetInfectedMode_Implementation()
+{
+	auto const InfectionAttribute = Attributes->GetAttribute(TAG_Attribute_Infection);
+	if(InfectionAttribute->GetCurrentValue() >=1)
+	{
+		for(auto const tag : AbilitiesRemovedByInfection)
+		{
+			AbilityComponent->RemoveAbility(tag);
+		}
+
+		for(auto const ability : AbilitiesGrantedByInfection)
+		{
+			AbilityComponent->AddAbility(ability, this);
+		}
+		
+	}
+}
+
 void AKSCharacter::OnSpeedChanged(float OldValue, float NewValue)
 {
 	UE_LOG(LogTemp,Verbose, TEXT("SPEED delagate called"));
@@ -69,6 +106,12 @@ void AKSCharacter::BeginPlay()
 	if(!ensureAlwaysMsgf(SpeedAttribute, TEXT("No speed attribute, your character is ill formated !"))) return;
 
 	SpeedAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnSpeedChanged);
+
+	auto* InfectAttribute = Attributes->GetAttribute(TAG_Attribute_Infection);
+	if(!ensureAlwaysMsgf(InfectAttribute, TEXT("No infect attribute, your character is ill formated !"))) return;
+
+	InfectAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnSpeedChanged);
+	
 	
 }
 

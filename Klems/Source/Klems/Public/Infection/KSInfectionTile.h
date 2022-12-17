@@ -31,7 +31,6 @@ public:
 	UFUNCTION()
 	void InfectPlayer(AKSCharacter* Player);
 
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -39,7 +38,7 @@ protected:
 	UFUNCTION(Server, Reliable)
 	void ServerInfectPlayer(AKSCharacter* Player);
 
-	UPROPERTY(BlueprintReadWrite, Category = "Mesh")
+	UPROPERTY(BlueprintReadWrite,EditDefaultsOnly, Category = "Mesh")
 	TObjectPtr<UStaticMeshComponent> Tile;
 
 private:
@@ -47,6 +46,6 @@ private:
 	UFUNCTION()
 	void SetInfection(float InfectDensity = 0);
 
-	UFUNCTION()    
+	UFUNCTION(BlueprintCallable)    
 	void OnCompHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 };

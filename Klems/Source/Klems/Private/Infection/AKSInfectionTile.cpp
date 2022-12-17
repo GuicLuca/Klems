@@ -5,26 +5,26 @@
 
 
 // Sets default values
-AAKSInfectionTile::AAKSInfectionTile()
+AKSInfectionTile::AKSInfectionTile()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 }
 
-void AAKSInfectionTile::Infect_Implementation(float InfectAmount)
+void AKSInfectionTile::Infect_Implementation(float InfectAmount)
 {
 	if(!TileDynamicMat) return;
 
 	float InfectionDensity;
 	TileDynamicMat->GetScalarParameterValue(FHashedMaterialParameterInfo("InfectionDensity"),InfectionDensity);
-
-	//if(!ensureMsgf(InfectionDensity, "Material Instance do not have any scalar parameter %s")) return;
 	
-	TileDynamicMat->
+	if(!ensure(InfectionDensity)) return;
+	
+	TileDynamicMat->SetScalarParameterValue(FName("InfectionDensity"),InfectionDensity+InfectAmount);
 }
 
 // Called when the game starts or when spawned
-void AAKSInfectionTile::BeginPlay()
+void AKSInfectionTile::BeginPlay()
 {
 	Super::BeginPlay();
 

@@ -7,13 +7,13 @@
 #include "AKSInfectionTile.generated.h"
 
 UCLASS()
-class KLEMS_API AAKSInfectionTile : public AActor
+class KLEMS_API AKSInfectionTile : public AActor
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this actor's properties
-	AAKSInfectionTile();
+	AKSInfectionTile();
 
 	UFUNCTION(BlueprintNativeEvent)
 	void Infect(float InfectAmount);

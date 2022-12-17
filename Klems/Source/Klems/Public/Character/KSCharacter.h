@@ -31,6 +31,9 @@ public:
 	void SetInfectedMode();
 
 	UFUNCTION(BlueprintCallable)
+	void addInfection();
+
+	UFUNCTION(BlueprintCallable)
 	void startInfection();
 
 	UFUNCTION(BlueprintCallable)
@@ -94,6 +97,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UKSInputConfig* InputConfig;
+
+private:
+	FTimerHandle MemberTimerHandle;
 	
 };
 

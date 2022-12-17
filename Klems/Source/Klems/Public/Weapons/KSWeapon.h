@@ -20,20 +20,12 @@ protected:
 	virtual void BeginPlay() override;
 	
 
-	UPROPERTY(Replicated,BlueprintReadWrite)
-	int32 Ammo;
 	
-	UPROPERTY()
-	TObjectPtr<AKSCharacter> PlayerOwned;
 	
 	UPROPERTY(EditDefaultsOnly,Category="Weapon")
 	TObjectPtr<UStaticMeshComponent> WeaponMesh;
 
-	UFUNCTION(BlueprintNativeEvent)
-	void Fire();
-
-	UFUNCTION(BlueprintNativeEvent)
-	void Reload();
+	
 
 	
 

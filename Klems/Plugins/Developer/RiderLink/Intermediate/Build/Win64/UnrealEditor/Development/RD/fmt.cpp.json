@@ -1,11 +1,19 @@
 {
     "Version": "1.1",
     "Data": {
+<<<<<<< HEAD
         "Source": "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\src\\fmt.cpp",
         "ProvidedModule": "",
         "Includes": [
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\unrealeditor\\development\\rd\\definitions.h",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\format-inl.h",
+=======
+        "Source": "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\src\\fmt.cpp",
+        "ProvidedModule": "",
+        "Includes": [
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\unrealeditor\\development\\rd\\definitions.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\format-inl.h",
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\algorithm",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\yvals_core.h",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\vcruntime.h",
@@ -116,8 +124,13 @@
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\xloctime",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\io.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\corecrt_io.h",
+<<<<<<< HEAD
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\format.h",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\core.h",
+=======
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\format.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\core.h",
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\string",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\string_view",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\intrin.h",

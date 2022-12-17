@@ -33,10 +33,17 @@
 /NODEFAULTLIB:"LIBCD"
 /NODEFAULTLIB:"LIBCPD"
 /FUNCTIONPADMIN
+<<<<<<< HEAD
 "C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderGameControl\RiderGameControl.cpp.obj"
 "C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderGameControl\Default.rc2.res"
 "C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RD\UnrealEditor-RD.lib"
 "C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderLink\UnrealEditor-RiderLink.lib"
+=======
+"C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderGameControl\RiderGameControl.cpp.obj"
+"C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderGameControl\Default.rc2.res"
+"C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RD\UnrealEditor-RD.lib"
+"C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderLink\UnrealEditor-RiderLink.lib"
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
 "..\Intermediate\Build\Win64\UnrealEditor\Development\HeadMountedDisplay\UnrealEditor-HeadMountedDisplay.lib"
 "..\Intermediate\Build\Win64\UnrealEditor\Development\LevelEditor\UnrealEditor-LevelEditor.lib"
 "..\Intermediate\Build\Win64\UnrealEditor\Development\UnrealEd\UnrealEditor-UnrealEd.lib"
@@ -68,7 +75,13 @@
 "setupapi.lib"
 "dwmapi.lib"
 "imm32.lib"
+<<<<<<< HEAD
 /OUT:"C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderGameControl.dll"
 /IMPLIB:"C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderGameControl\UnrealEditor-RiderGameControl.suppressed.lib"
 /PDB:"C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderGameControl.pdb"
+=======
+/OUT:"C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderGameControl.dll"
+/IMPLIB:"C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderGameControl\UnrealEditor-RiderGameControl.suppressed.lib"
+/PDB:"C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderGameControl.pdb"
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
 /ignore:4078

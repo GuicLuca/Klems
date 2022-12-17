@@ -1,11 +1,19 @@
 {
     "Version": "1.1",
     "Data": {
+<<<<<<< HEAD
         "Source": "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\src\\rd_gen_cpp\\src\\rdtextbuffer.cpp",
         "ProvidedModule": "",
         "Includes": [
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\unrealeditor\\development\\rd\\definitions.h",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\src\\rd_gen_cpp\\src\\rdtextbuffer.h"
+=======
+        "Source": "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\src\\rd_gen_cpp\\src\\rdtextbuffer.cpp",
+        "ProvidedModule": "",
+        "Includes": [
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\unrealeditor\\development\\rd\\definitions.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\src\\rd_gen_cpp\\src\\rdtextbuffer.h"
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

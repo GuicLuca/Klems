@@ -6,6 +6,12 @@
 /NAME:"UnrealEditor-RiderGameControl.dll"
 /IGNORE:4221
 /NODEFAULTLIB
+<<<<<<< HEAD
 "C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderGameControl\RiderGameControl.cpp.obj"
 "C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderGameControl\Default.rc2.res"
 /OUT:"C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderGameControl\UnrealEditor-RiderGameControl.lib"
+=======
+"C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderGameControl\RiderGameControl.cpp.obj"
+"C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderGameControl\Default.rc2.res"
+/OUT:"C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderGameControl\UnrealEditor-RiderGameControl.lib"
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7

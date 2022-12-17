@@ -1,11 +1,19 @@
 {
     "Version": "1.1",
     "Data": {
+<<<<<<< HEAD
         "Source": "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\src\\file_sinks.cpp",
         "ProvidedModule": "",
         "Includes": [
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\unrealeditor\\development\\rd\\definitions.h",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\null_mutex.h",
+=======
+        "Source": "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\src\\file_sinks.cpp",
+        "ProvidedModule": "",
+        "Includes": [
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\unrealeditor\\development\\rd\\definitions.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\null_mutex.h",
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\atomic",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\yvals.h",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\yvals_core.h",
@@ -53,10 +61,17 @@
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\time.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\corecrt_wtime.h",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\utility",
+<<<<<<< HEAD
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\file_helper-inl.h",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\file_helper.h",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\common.h",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\tweakme.h",
+=======
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\file_helper-inl.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\file_helper.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\common.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\tweakme.h",
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\chrono",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\__msvc_chrono.hpp",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\limits",
@@ -104,11 +119,19 @@
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\vector",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\xbit_ops.h",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\xnode_handle.h",
+<<<<<<< HEAD
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\fmt.h",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\core.h",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\iterator",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\string_view",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\format.h",
+=======
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\fmt.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\core.h",
+            "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\iterator",
+            "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\string_view",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\format.h",
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\stdexcept",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\system_error",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\__msvc_system_error_abi.hpp",
@@ -128,14 +151,21 @@
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\mmintrin.h",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\zmmintrin.h",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\ammintrin.h",
+<<<<<<< HEAD
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\xchar.h",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\xchar.h",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\os.h",
+=======
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\xchar.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\fmt\\bundled\\xchar.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\os.h",
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\thread",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\process.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\corecrt_startup.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\math.h",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\vcruntime_startup.h",
+<<<<<<< HEAD
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\sinks\\basic_file_sink-inl.h",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\sinks\\basic_file_sink.h",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\sinks\\base_sink.h",
@@ -149,6 +179,21 @@
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\pattern_formatter.h",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\sinks\\rotating_file_sink-inl.h",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\sinks\\rotating_file_sink.h"
+=======
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\sinks\\basic_file_sink-inl.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\sinks\\basic_file_sink.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\sinks\\base_sink.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\log_msg.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\sinks\\sink.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\formatter.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\synchronous_factory.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\details\\registry.h",
+            "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\mutex",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\sinks\\base_sink-inl.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\pattern_formatter.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\sinks\\rotating_file_sink-inl.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\spdlog\\include\\spdlog\\sinks\\rotating_file_sink.h"
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

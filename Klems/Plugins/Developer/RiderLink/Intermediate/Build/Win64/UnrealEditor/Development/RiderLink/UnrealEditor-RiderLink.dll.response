@@ -33,10 +33,17 @@
 /NODEFAULTLIB:"LIBCD"
 /NODEFAULTLIB:"LIBCPD"
 /FUNCTIONPADMIN
+<<<<<<< HEAD
 "C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderLink\Module.RiderLink.cpp.obj"
 "C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderLink\Default.rc2.res"
 "..\Intermediate\Build\Win64\UnrealEditor\Development\Core\UnrealEditor-Core.lib"
 "C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RD\UnrealEditor-RD.lib"
+=======
+"C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderLink\Module.RiderLink.cpp.obj"
+"C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderLink\Default.rc2.res"
+"..\Intermediate\Build\Win64\UnrealEditor\Development\Core\UnrealEditor-Core.lib"
+"C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RD\UnrealEditor-RD.lib"
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
 "delayimp.lib"
 "wininet.lib"
 "rpcrt4.lib"
@@ -61,7 +68,13 @@
 "setupapi.lib"
 "dwmapi.lib"
 "imm32.lib"
+<<<<<<< HEAD
 /OUT:"C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderLink.dll"
 /IMPLIB:"C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderLink\UnrealEditor-RiderLink.suppressed.lib"
 /PDB:"C:\Users\hmora\Documents\Unreal Projects\Klems\Klems\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderLink.pdb"
+=======
+/OUT:"C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderLink.dll"
+/IMPLIB:"C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Intermediate\Build\Win64\UnrealEditor\Development\RiderLink\UnrealEditor-RiderLink.suppressed.lib"
+/PDB:"C:\Users\llou\Documents\Git\Klems\Klems\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderLink.pdb"
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
 /ignore:4078

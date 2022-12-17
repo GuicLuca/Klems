@@ -1,11 +1,19 @@
 {
     "Version": "1.1",
     "Data": {
+<<<<<<< HEAD
         "Source": "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\clsocket\\src\\simplesocket.cpp",
         "ProvidedModule": "",
         "Includes": [
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\unrealeditor\\development\\rd\\definitions.h",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\clsocket\\src\\simplesocket.h",
+=======
+        "Source": "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\clsocket\\src\\simplesocket.cpp",
+        "ProvidedModule": "",
+        "Includes": [
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\unrealeditor\\development\\rd\\definitions.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\clsocket\\src\\simplesocket.h",
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\sys\\stat.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\corecrt.h",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\vcruntime.h",
@@ -149,12 +157,20 @@
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\um\\ws2tcpip.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\shared\\ws2ipdef.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\shared\\in6addr.h",
+<<<<<<< HEAD
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\clsocket\\src\\host.h",
+=======
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\clsocket\\src\\host.h",
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\cstdint",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\yvals_core.h",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\xkeycheck.h",
             "c:\\program files (x86)\\microsoft visual studio\\2019\\professional\\vc\\tools\\msvc\\14.29.30133\\include\\stdint.h",
+<<<<<<< HEAD
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\clsocket\\src\\stattimer.h",
+=======
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\clsocket\\src\\stattimer.h",
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\time.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\corecrt_wtime.h"
         ],

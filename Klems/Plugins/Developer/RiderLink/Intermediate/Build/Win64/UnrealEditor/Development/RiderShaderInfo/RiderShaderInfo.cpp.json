@@ -1,11 +1,19 @@
 {
     "Version": "1.1",
     "Data": {
+<<<<<<< HEAD
         "Source": "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\ridershaderinfo\\ridershaderinfo.cpp",
         "ProvidedModule": "",
         "Includes": [
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\unrealeditor\\development\\ridershaderinfo\\definitions.h",
             "c:\\users\\hmora\\documents\\unreal projects\\klems\\klems\\plugins\\developer\\riderlink\\source\\ridershaderinfo\\ridershaderinfo.h",
+=======
+        "Source": "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\ridershaderinfo\\ridershaderinfo.cpp",
+        "ProvidedModule": "",
+        "Includes": [
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\unrealeditor\\development\\ridershaderinfo\\definitions.h",
+            "c:\\users\\llou\\documents\\git\\klems\\klems\\plugins\\developer\\riderlink\\source\\ridershaderinfo\\ridershaderinfo.h",
+>>>>>>> b5d5a0df64b794b83f98b94d16d9a66cc53a03f7
             "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\core\\public\\modules\\moduleinterface.h",
             "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\core\\public\\coretypes.h",
             "c:\\program files\\epic games\\ue_5.0\\engine\\source\\runtime\\core\\public\\hal\\platform.h",

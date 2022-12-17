@@ -15,7 +15,8 @@ AKSCharacter::AKSCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 	
 	bReplicates = true;
-	bUseControllerRotationPitch = true;
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationYaw = true;
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(RootComponent);
@@ -27,6 +28,7 @@ AKSCharacter::AKSCharacter()
 	AbilityComponent = CreateDefaultSubobject<UASAbilityComponent>(TEXT("AbilityComponent"));
 
 	Attributes = CreateDefaultSubobject<UASAttributeSetComponent>(TEXT("AttributeComponent"));
+
 	// Create a first person mesh component for the owning player.
 	FPSMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FirstPersonMesh"));
 	check(FPSMesh != nullptr);

@@ -33,7 +33,7 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Attribute")
 	TObjectPtr<UASAttributeSetComponent> Attributes;
 
-	UPROPERTY(VisibleAnywhere, Category = "Combat")
+	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category = "Combat")
 	TObjectPtr<UKSCombatComponent> CombatComponent;
 	
 protected:

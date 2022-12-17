@@ -45,7 +45,7 @@ void UKSCombatComponent::EquipWeapon(AKSWeapon* Weapon)
 	{
 		if(!ensure(Character)) return;
 		if(!Weapon) return;
-		if(!Character->HasAuthority()) return;
+		//if(!Character->HasAuthority()) return;
 
 		EquippedWeapon = Weapon;
 		const auto* HandSocket = Character->GetMesh()->GetSocketByName(WeaponSocketName);

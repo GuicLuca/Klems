@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Character/KSCharacter.h"
 #include "GameFramework/Actor.h"
 #include "KSInfectionTile.generated.h"
 
@@ -27,15 +28,25 @@ public:
 	UPROPERTY(Replicated, ReplicatedUsing=OnRep_InfectionDensity)
 	float InfectionDensity = 0;
 
+	UFUNCTION()
+	void InfectPlayer(AKSCharacter* Player);
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	UFUNCTION(Server, Reliable)
+	void ServerInfectPlayer(AKSCharacter* Player);
+
+	UPROPERTY(BlueprintReadWrite, Category = "Mesh")
+	TObjectPtr<UStaticMeshComponent> Tile;
 
 private:
 
 	UFUNCTION()
 	void SetInfection(float InfectDensity = 0);
 
-	UPROPERTY(VisibleDefaultsOnly, Category = "Mesh")
-	TObjectPtr<UStaticMeshComponent> Tile;
+	UFUNCTION()    
+	void OnCompHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 };

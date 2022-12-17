@@ -14,24 +14,14 @@ AKSWeapon::AKSWeapon()
 
 }
 
-void AKSWeapon::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
-{
-	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	DOREPLIFETIME(AKSWeapon,Ammo);
-}
+
 
 void AKSWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 }
 
-void AKSWeapon::Reload_Implementation()
-{
-}
 
-void AKSWeapon::Fire_Implementation()
-{
-}
 
 
 

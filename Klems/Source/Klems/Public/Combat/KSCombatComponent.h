@@ -53,6 +53,5 @@ protected:
 	UPROPERTY(Replicated,BlueprintReadWrite)
 	int32 Ammo;
 
-public:
 
 };

@@ -4,6 +4,8 @@
 #include "Klems/Public/Infection/KSInfectionTile.h"
 
 #include "IContentBrowserSingleton.h"
+#include "Character/KSCharacter.h"
+#include "GameplayTags/KSGameplayTags.h"
 #include "Net/UnrealNetwork.h"
 
 
@@ -17,6 +19,7 @@ AKSInfectionTile::AKSInfectionTile()
 
 	Tile = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Tile"));
 	Tile->SetupAttachment(RootComponent);
+	Tile->OnComponentHit.AddDynamic(this, &AKSInfectionTile::OnCompHit);
 }
 
 void AKSInfectionTile::addInfectionDensity(float newValue)
@@ -44,9 +47,28 @@ void AKSInfectionTile::SetInfection(float InfectDensity)
 	
 }
 
+void AKSInfectionTile::OnCompHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp,
+	FVector NormalImpulse, const FHitResult& Hit)
+{
+	AKSCharacter* PlayerHit= Cast<AKSCharacter>(OtherActor);
+	InfectPlayer(PlayerHit);
+}
+
 void AKSInfectionTile::OnRep_InfectionDensity(float LastInfectionDensity)
 {
 	SetInfection(InfectionDensity);
+}
+
+void AKSInfectionTile::InfectPlayer(AKSCharacter* Player)
+{
+	ServerInfectPlayer(Player);
+}
+
+void AKSInfectionTile::ServerInfectPlayer_Implementation(AKSCharacter* Player)
+{
+	if(!HasAuthority()) return;
+
+	//Player->Attributes->GetAttribute(TAG_Attribute_Infection)
 }
 
 // Called when the game starts or when spawned
@@ -62,5 +84,4 @@ void AKSInfectionTile::BeginPlay()
 
 	SetInfection();
 }
-
 

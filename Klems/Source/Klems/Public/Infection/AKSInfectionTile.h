@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "AKSInfectionTile.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class KLEMS_API AKSInfectionTile : public AActor
 {
 	GENERATED_BODY()
@@ -15,9 +15,13 @@ public:
 	// Sets default values for this actor's properties
 	AKSInfectionTile();
 
-	UFUNCTION(BlueprintNativeEvent)
+	UFUNCTION(BlueprintCallable)
 	void Infect(float InfectAmount);
 
+	UFUNCTION(BlueprintCallable)
+	void SetInfection(float InfectDensity = 0);
+
+	UPROPERTY(BlueprintReadWrite, Category = "Material")
 	UMaterialInstanceDynamic* TileDynamicMat = nullptr;
 
 protected:
@@ -25,5 +29,7 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	UStaticMesh* Tile;
+
+	UPROPERTY(VisibleDefaultsOnly, Category = "Mesh")
+	TObjectPtr<UStaticMeshComponent> Tile;
 };

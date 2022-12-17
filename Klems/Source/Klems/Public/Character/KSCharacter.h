@@ -25,6 +25,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	UCameraComponent* GetCamera() { return Camera; }
+
+	UPROPERTY(Replicated, BlueprintReadWrite)
+	float InfectionDensity = 0;
+	
 protected:
 	
 	UFUNCTION()

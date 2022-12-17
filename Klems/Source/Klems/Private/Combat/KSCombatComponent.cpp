@@ -3,6 +3,8 @@
 
 #include "Combat/KSCombatComponent.h"
 
+
+
 #include "Engine/SkeletalMeshSocket.h"
 #include "Net/UnrealNetwork.h"
 
@@ -18,21 +20,23 @@ void UKSCombatComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& O
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(UKSCombatComponent,Ammo);
 }
-void UKSCombatComponent::Fire_Implementation()
+void UKSCombatComponent::Fire()
 {
 	Ammo--;
+	OnFireDelegate.Broadcast();
 }
 
 
-void UKSCombatComponent::Reload_Implementation()
+void UKSCombatComponent::Reload()
 {
 	Ammo=10;
+	OnReloadDelegate.Broadcast();
+
 }
 
 void UKSCombatComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
 	
 }
 

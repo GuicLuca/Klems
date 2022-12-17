@@ -7,6 +7,7 @@
 #include "GameFramework/Character.h"
 #include "KSCharacter.generated.h"
 
+class UKSCombatComponent;
 class UCameraComponent;
 class UKSInputConfig;
 struct FInputActionValue;
@@ -31,6 +32,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, Category = "Attribute")
 	TObjectPtr<UASAttributeSetComponent> Attributes;
+
+	UPROPERTY(VisibleAnywhere, Category = "Combat")
+	TObjectPtr<UKSCombatComponent> CombatComponent;
 	
 protected:
 	

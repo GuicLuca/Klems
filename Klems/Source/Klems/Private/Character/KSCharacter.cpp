@@ -2,6 +2,7 @@
 
 #include "Character/KSCharacter.h"
 #include "Camera/CameraComponent.h"
+#include "Combat/KSCombatComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameplayTags/KSGameplayTags.h"
 #include "Inputs/KSTaggedInputComponent.h"
@@ -30,6 +31,7 @@ AKSCharacter::AKSCharacter()
 	FPSMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FirstPersonMesh"));
 	check(FPSMesh != nullptr);
 
+	CombatComponent = CreateDefaultSubobject<UKSCombatComponent>(TEXT("Combat Component"));
 	// Only the owning player sees this mesh.
 	FPSMesh->SetOnlyOwnerSee(true);
 

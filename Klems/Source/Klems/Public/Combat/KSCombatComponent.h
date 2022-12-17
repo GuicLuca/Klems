@@ -8,6 +8,8 @@
 #include "Weapons/KSWeapon.h"
 #include "KSCombatComponent.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnFire);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnReload);
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class KLEMS_API UKSCombatComponent : public UActorComponent
@@ -20,14 +22,20 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Init(AKSCharacter* character) {Character = character;}
 
-	UFUNCTION(BlueprintNativeEvent)
+	UFUNCTION(BlueprintCallable)
 	void Fire();
 
-	UFUNCTION(BlueprintNativeEvent)
+	UFUNCTION(BlueprintCallable)
 	void Reload();
 
 	UFUNCTION(BlueprintCallable)
 	void EquipWeapon(AKSWeapon* Weapon);
+
+	UPROPERTY(BlueprintCallable)
+	FOnFire OnFireDelegate;
+	
+	UPROPERTY(BlueprintCallable)
+	FOnReload OnReloadDelegate;
 
 protected:
 	// Called when the game starts

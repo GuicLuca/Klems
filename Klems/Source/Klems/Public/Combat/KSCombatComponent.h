@@ -56,6 +56,9 @@ public:
 	UPROPERTY(Replicated,BlueprintReadWrite,ReplicatedUsing=OnRep_OnAmmoChanged)
 	int32 Ammo;
 
+	UPROPERTY(EditDefaultsOnly)
+	int32 MaxAmmo;
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -78,8 +81,7 @@ protected:
 	//UPROPERTY(Replicated,BlueprintReadWrite,ReplicatedUsing=OnRep_OnHealthChanged)
 	//int32 Health = 100;
 
-	UPROPERTY(EditDefaultsOnly)
-	int32 MaxAmmo;
+
 
 	//PROPERTY(EditDefaultsOnly)
 	//int32 MaxHealth;

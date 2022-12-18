@@ -115,6 +115,8 @@ void AKSCharacter::startInfection_Implementation()
 void AKSCharacter::stopInfection_Implementation()
 {
 	GetWorldTimerManager().ClearTimer(MemberTimerHandle);
+	CombatComponent->MaxAmmo = 1;
+	CombatComponent->Ammo = 1;
 }
 
 void AKSCharacter::OnInfectChanged(float OldValue, float NewValue)
@@ -256,8 +258,10 @@ void AKSCharacter::InputShoot(const FInputActionValue& InputActionValue)
 	}
 	else
 	{
+		/*
 		AbilityComponent->StopAbility(TAG_Ability_Shoot,this);
 		AbilityComponent->StopAbility(TAG_Ability_Punch,this);
+		*/
 	}
 
 

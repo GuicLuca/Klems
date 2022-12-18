@@ -31,6 +31,9 @@ public:
 	void SetInfectedMode();
 
 	UFUNCTION(BlueprintCallable)
+	void addInfection();
+
+	UFUNCTION(BlueprintCallable)
 	void startInfection();
 
 	UFUNCTION(BlueprintCallable)
@@ -39,7 +42,7 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Ability")
 	TObjectPtr<UASAbilityComponent> AbilityComponent;
 
-	UPROPERTY(VisibleAnywhere, Category = "Attribute")
+	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category = "Attribute")
 	TObjectPtr<UASAttributeSetComponent> Attributes;
 
 
@@ -94,6 +97,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UKSInputConfig* InputConfig;
+
+private:
+	FTimerHandle MemberTimerHandle;
 	
 };
 

@@ -3,8 +3,10 @@
 #include "Character/KSCharacter.h"
 #include "Camera/CameraComponent.h"
 #include "Combat/KSCombatComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameplayTags/KSGameplayTags.h"
+#include "Infection/KSInfectionTile.h"
 #include "Inputs/KSTaggedInputComponent.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Net/UnrealNetwork.h"
@@ -58,13 +60,35 @@ void AKSCharacter::SetInfectedMode()
 	ServerSetInfectedMode();
 }
 
+void AKSCharacter::addInfection()
+{
+	TArray<AActor*> OverlappedActors;
+	GetCapsuleComponent()->GetOverlappingActors(OverlappedActors);
+
+	for(auto* Actor : OverlappedActors)
+	{
+		auto tile = Cast<AKSInfectionTile>(Actor);
+		if(tile)
+		{
+			const float infectionDensity = tile->InfectionDensity;
+			const auto InfectionAttribute = this->Attributes->GetAttribute(TAG_Attribute_Infection);
+			InfectionAttribute->SetCurrentValue(InfectionAttribute->GetCurrentValue()+infectionDensity);
+			SetInfectedMode();
+			break;
+		}
+	}
+}
+
 void AKSCharacter::startInfection()
 {
-	GetWorldTimerManager().SetTimer()
+	if(!HasAuthority()) return;
+	
+	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AKSCharacter::addInfection, 1.0f, true);
 }
 
 void AKSCharacter::stopInfection()
 {
+	GetWorldTimerManager().ClearTimer(MemberTimerHandle);
 }
 
 void AKSCharacter::OnInfectChanged(float OldValue, float NewValue)
@@ -77,12 +101,12 @@ void AKSCharacter::ServerSetInfectedMode_Implementation()
 	auto const InfectionAttribute = Attributes->GetAttribute(TAG_Attribute_Infection);
 	if(InfectionAttribute->GetCurrentValue() >=1)
 	{
-		for(auto const tag : AbilitiesRemovedByInfection)
+		for(auto tag : AbilitiesRemovedByInfection)
 		{
 			AbilityComponent->RemoveAbility(tag);
 		}
 
-		for(auto const ability : AbilitiesGrantedByInfection)
+		for(auto ability : AbilitiesGrantedByInfection)
 		{
 			AbilityComponent->AddAbility(ability, this);
 		}
@@ -112,7 +136,7 @@ void AKSCharacter::BeginPlay()
 	auto* InfectAttribute = Attributes->GetAttribute(TAG_Attribute_Infection);
 	if(!ensureAlwaysMsgf(InfectAttribute, TEXT("No infect attribute, your character is ill formated !"))) return;
 
-	InfectAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnSpeedChanged);
+	InfectAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnInfectChanged);
 	
 	
 }
@@ -172,6 +196,7 @@ void AKSCharacter::InputShoot(const FInputActionValue& InputActionValue)
 	if(InputActionValue.Get<bool>())
 	{
 		AbilityComponent->StartAbility(TAG_Ability_Shoot,this);
+		
 	}
 	else
 	{

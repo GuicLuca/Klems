@@ -42,7 +42,7 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = "Ability")
 	TObjectPtr<UASAbilityComponent> AbilityComponent;
 
-	UPROPERTY(VisibleAnywhere, Category = "Attribute")
+	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category = "Attribute")
 	TObjectPtr<UASAttributeSetComponent> Attributes;
 
 

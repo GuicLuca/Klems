@@ -27,6 +27,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	UCameraComponent* GetCamera() { return Camera; }
 
+	UFUNCTION(BlueprintCallable)
+	USkeletalMeshComponent * GetFPSMesh() {return FPSMesh;}
 	UFUNCTION()
 	void SetInfectedMode();
 

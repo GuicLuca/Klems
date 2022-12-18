@@ -29,23 +29,18 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	USkeletalMeshComponent * GetFPSMesh() {return FPSMesh;}
-	UFUNCTION()
+	
+	UFUNCTION(BlueprintCallable)
 	void SetInfectedMode();
 
 	UFUNCTION(BlueprintCallable)
 	void addInfection();
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void startInfection();
 
 	UFUNCTION(BlueprintNativeEvent)
 	void stopInfection();
-
-	UFUNCTION(BlueprintNativeEvent)
-	void ShowTabUI();
-
-	UFUNCTION(BlueprintNativeEvent)
-	void HideTabUI();
 	
 	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category = "Ability")
 	TObjectPtr<UASAbilityComponent> AbilityComponent;
@@ -63,18 +58,12 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TArray<TSubclassOf<UASAbility>> AbilitiesGrantedByInfection;
 
-	UPROPERTY(BlueprintReadWrite, Replicated, ReplicatedUsing=OnRep_HealthChanged);
+	UPROPERTY(BlueprintReadWrite, Replicated, ReplicatedUsing=OnRep_InfectionDensityChanged);
 	float InfectionDensity = 0;
 
 	UFUNCTION()
-	void OnRep_HealthChanged();
-
-	UFUNCTION(BlueprintCallable)
-	void DecrementHealth(float amount);
-
-	UPROPERTY(BlueprintReadWrite, Replicated)
-	float Health = 100;
-
+	void OnRep_InfectionDensityChanged();
+	
 	UFUNCTION(BlueprintNativeEvent)
 	void OnAmmoChanged(int32 OldValue, int32 NewValue);
 
@@ -85,14 +74,6 @@ protected:
 	
 	UFUNCTION()
 	void OnInfectChanged(float OldValue, float NewValue);
-	
-	UFUNCTION()
-	void OnHealthChanged(float OldValue, float NewValue);
-	
-	UFUNCTION(Server, Reliable)
-	void ServerSetInfectedMode();
-
-	
 	
 	virtual void BeginPlay() override;
 
@@ -112,9 +93,6 @@ protected:
 
 	void InputPunch(const FInputActionValue& InputActionValue);
 	
-	void InputTab(const FInputActionValue& InputActionValue);
-	
-
 
 	UPROPERTY(VisibleAnywhere, Category="Camera")
 	TObjectPtr<UCameraComponent> Camera;

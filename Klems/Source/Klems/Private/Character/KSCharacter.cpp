@@ -53,12 +53,11 @@ AKSCharacter::AKSCharacter()
 void AKSCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(AKSCharacter,InfectionDensity);
 }
 
 void AKSCharacter::SetInfectedMode()
 {
-
-	//auto const InfectionAttribute = Attributes->GetAttribute(TAG_Attribute_Infection);
 	if(InfectionDensity >=1)
 	{
 		for(auto tag : AbilitiesRemovedByInfection)
@@ -73,14 +72,8 @@ void AKSCharacter::SetInfectedMode()
 
 		stopInfection();
 	}
-	
-	//ServerSetInfectedMode();
 }
 
-void AKSCharacter::startInfection()
-{
-	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AKSCharacter::addInfection, 1.0f, true);
-}
 
 void AKSCharacter::addInfection()
 {
@@ -94,51 +87,20 @@ void AKSCharacter::addInfection()
 		{
 			const float infectionDensity = tile->InfectionDensity;
 			this->InfectionDensity += infectionDensity;
-			//const auto InfectionAttribute = this->Attributes->GetAttribute(TAG_Attribute_Infection);
-			//InfectionAttribute->SetCurrentValue(InfectionAttribute->GetCurrentValue()+infectionDensity);
 			SetInfectedMode();
 			break;
 		}
 	}
 }
 
+void AKSCharacter::startInfection_Implementation()
+{
+	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AKSCharacter::addInfection, 1.0f, true);
+}
+
 void AKSCharacter::stopInfection_Implementation()
 {
 	GetWorldTimerManager().ClearTimer(MemberTimerHandle);
-}
-
-void AKSCharacter::HideTabUI_Implementation()
-{
-	
-}
-
-void AKSCharacter::ShowTabUI_Implementation()
-{
-	
-}
-
-
-void AKSCharacter::OnAmmoChanged_Implementation(int32 OldValue, int32 NewValue)
-{
-}
-
-void AKSCharacter::ServerSetInfectedMode_Implementation()
-{
-	auto const InfectionAttribute = Attributes->GetAttribute(TAG_Attribute_Infection);
-	if(InfectionAttribute->GetCurrentValue() >=1)
-	{
-		for(auto tag : AbilitiesRemovedByInfection)
-		{
-			AbilityComponent->RemoveAbility(tag);
-		}
-
-		for(auto ability : AbilitiesGrantedByInfection)
-		{
-			AbilityComponent->AddAbility(ability, this);
-		}
-
-		stopInfection();
-	}
 }
 
 void AKSCharacter::OnInfectChanged(float OldValue, float NewValue)
@@ -156,27 +118,14 @@ void AKSCharacter::OnInfectChanged(float OldValue, float NewValue)
 	SetInfectedMode();
 }
 
-void AKSCharacter::OnHealthChanged(float OldValue, float NewValue)
-{
-	if(HasAuthority())
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Server Health ValueChanged"));
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Client Health ValueChanged"));
-	}
-	Health = NewValue;
-}
 
-
-void AKSCharacter::OnRep_HealthChanged()
+void AKSCharacter::OnAmmoChanged_Implementation(int32 OldValue, int32 NewValue)
 {
 }
 
-void AKSCharacter::DecrementHealth(float amount)
+void AKSCharacter::OnRep_InfectionDensityChanged()
 {
-	Health-=amount;
+	SetInfectedMode();
 }
 
 void AKSCharacter::OnSpeedChanged(float OldValue, float NewValue)
@@ -313,17 +262,6 @@ void AKSCharacter::InputPunch(const FInputActionValue& InputActionValue)
 	}
 }
 
-void AKSCharacter::InputTab(const FInputActionValue& InputActionValue)
-{
-	if(InputActionValue.Get<bool>())
-	{
-		ShowTabUI();
-	} else
-	{
-		HideTabUI();
-	}
-}
-
 
 void AKSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -340,5 +278,5 @@ void AKSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	TaggedInputComponent->BindActionByTag(InputConfig, TAG_Input_Shoot, ETriggerEvent::Triggered, this, &AKSCharacter::InputShoot);
 	TaggedInputComponent->BindActionByTag(InputConfig, TAG_Input_Reload, ETriggerEvent::Triggered, this, &AKSCharacter::InputReload);
 	TaggedInputComponent->BindActionByTag(InputConfig, TAG_Input_Punch, ETriggerEvent::Triggered, this, &AKSCharacter::InputPunch);
-	TaggedInputComponent->BindActionByTag(InputConfig, TAG_Input_TabUI, ETriggerEvent::Triggered, this, &AKSCharacter::InputTab);
+	//TaggedInputComponent->BindActionByTag(InputConfig, TAG_Input_TabUI, ETriggerEvent::Triggered, this, &AKSCharacter::InputTab);
 }

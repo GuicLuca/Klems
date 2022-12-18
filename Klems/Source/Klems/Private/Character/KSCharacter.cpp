@@ -118,6 +118,10 @@ void AKSCharacter::ShowTabUI_Implementation()
 }
 
 
+void AKSCharacter::OnAmmoChanged_Implementation(int32 OldValue, int32 NewValue)
+{
+}
+
 void AKSCharacter::ServerSetInfectedMode_Implementation()
 {
 	auto const InfectionAttribute = Attributes->GetAttribute(TAG_Attribute_Infection);
@@ -274,10 +278,18 @@ void AKSCharacter::InputReload(const FInputActionValue& InputActionValue)
 	if(InputActionValue.Get<bool>())
 	{
 		AbilityComponent->StartAbility(TAG_Ability_Reload,this);
+		FTimerHandle TimerHandle;
+		FTimerDelegate TimerDelegate;
+		TimerDelegate.BindLambda([&]()
+		{
+			AbilityComponent->StopAbility(TAG_Ability_Reload,this);
+		});
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle,TimerDelegate,3,false);
+		
 	}
 	else
 	{
-		AbilityComponent->StopAbility(TAG_Ability_Reload,this);
+		
 	}
 }
 
@@ -286,6 +298,7 @@ void AKSCharacter::InputPunch(const FInputActionValue& InputActionValue)
 	if(InputActionValue.Get<bool>())
 	{
 		AbilityComponent->StartAbility(TAG_Ability_Punch,this);
+		
 	}
 	else
 	{

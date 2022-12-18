@@ -22,15 +22,24 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Init(AKSCharacter* character) {Character = character;}
 
-	UFUNCTION(BlueprintCallable)
-	void Fire();
 
+	
+	
 	UFUNCTION(BlueprintCallable)
 	void Reload();
 
 	UFUNCTION(BlueprintCallable)
 	void EquipWeapon(AKSWeapon* Weapon,AKSWeapon* WeaponFPS);
+	
+	UFUNCTION(BlueprintCallable)
+	void DecrementAmmo(int32 AmmoNumber);
 
+	UFUNCTION(BlueprintCallable)
+	bool CanShoot();
+
+	UFUNCTION()
+	void OnRep_OnAmmoChanged();
+	
 	UPROPERTY(BlueprintCallable)
 	FOnFire OnFireDelegate;
 	
@@ -53,8 +62,12 @@ protected:
 	UPROPERTY()
 	AKSCharacter* Character;
 
-	UPROPERTY(Replicated,BlueprintReadWrite)
+	
+	UPROPERTY(Replicated,BlueprintReadWrite,ReplicatedUsing=OnRep_OnAmmoChanged)
 	int32 Ammo;
+
+	UPROPERTY(EditDefaultsOnly)
+	int32 MaxAmmo;
 
 
 };

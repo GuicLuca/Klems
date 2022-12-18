@@ -24,3 +24,5 @@ UE_DEFINE_GAMEPLAY_TAG(TAG_Attribute_Speed, "Attribute.Movement.Speed")
 
 UE_DEFINE_GAMEPLAY_TAG(TAG_Modifier_Infection, "Modifier.Life.Infection")
 
+UE_DEFINE_GAMEPLAY_TAG(TAG_Effect_Reloading, "Ability.Effect.Reloading")
+

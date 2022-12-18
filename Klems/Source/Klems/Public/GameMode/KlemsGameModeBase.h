@@ -19,7 +19,7 @@ public:
 	void PlayerDie(APlayerController* noob);
 	
 protected:
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadWrite)
 	TArray<APlayerController*> joueurs;
 	
 };

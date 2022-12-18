@@ -91,6 +91,16 @@ void AKSCharacter::stopInfection()
 	GetWorldTimerManager().ClearTimer(MemberTimerHandle);
 }
 
+void AKSCharacter::HideTabUI_Implementation()
+{
+	
+}
+
+void AKSCharacter::ShowTabUI_Implementation()
+{
+	
+}
+
 void AKSCharacter::OnInfectChanged(float OldValue, float NewValue)
 {
 	SetInfectedMode();
@@ -228,6 +238,18 @@ void AKSCharacter::InputPunch(const FInputActionValue& InputActionValue)
 	}
 }
 
+void AKSCharacter::InputTab(const FInputActionValue& InputActionValue)
+{
+	if(InputActionValue.Get<bool>())
+	{
+		ShowTabUI();
+	} else
+	{
+		HideTabUI();
+	}
+}
+
+
 void AKSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -243,4 +265,5 @@ void AKSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	TaggedInputComponent->BindActionByTag(InputConfig, TAG_Input_Shoot, ETriggerEvent::Triggered, this, &AKSCharacter::InputShoot);
 	TaggedInputComponent->BindActionByTag(InputConfig, TAG_Input_Reload, ETriggerEvent::Triggered, this, &AKSCharacter::InputReload);
 	TaggedInputComponent->BindActionByTag(InputConfig, TAG_Input_Punch, ETriggerEvent::Triggered, this, &AKSCharacter::InputPunch);
+	TaggedInputComponent->BindActionByTag(InputConfig, TAG_Input_TabUI, ETriggerEvent::Triggered, this, &AKSCharacter::InputTab);
 }

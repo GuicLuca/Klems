@@ -53,7 +53,7 @@ void UOTSessionsSubsystem::CreateSession(int32 NumPublicConnections, const FStri
 	LastSessionSettings = MakeShareable(new FOnlineSessionSettings());
 	
 	//If we are using the NULL subsystem it is a LAN match. Otherwise it is an online match
-	LastSessionSettings->bIsLANMatch = IOnlineSubsystem::Get()->GetSubsystemName() == "NULL";
+	LastSessionSettings->bIsLANMatch = true;
 	LastSessionSettings->NumPublicConnections = NumPublicConnections;
 	LastSessionSettings->bUseLobbiesIfAvailable = true;
 	LastSessionSettings->bAllowJoinInProgress = true;

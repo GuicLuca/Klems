@@ -5,11 +5,19 @@
 
 	
 
-void AKSGameState::EndRound(APlayerController* winner)
+void AKSGameState::EndRound(FString winner)
 {
-	int32 score = scores[winner];
-	score++;
-	scores.Emplace(winner, score);	
+	int i = 0;
+	for (FString player : Players)
+	{
+		if (player == winner)
+		{
+			scores[i]++;
+		} else
+		{
+			i++;
+		}
+	}
 
 	numRound++;
 	StartRound();
@@ -23,7 +31,7 @@ void AKSGameState::StartRound()
 	}
 }
 
-TMap<APlayerController*, int32> AKSGameState::EndGame()
+TArray<int32> AKSGameState::EndGame()
 {
 	return scores;
 }

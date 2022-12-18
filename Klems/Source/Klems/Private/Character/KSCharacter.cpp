@@ -95,6 +95,14 @@ void AKSCharacter::addInfection()
 	}
 }
 
+void AKSCharacter::Reload_Implementation()
+{
+}
+
+void AKSCharacter::Shoot_Implementation()
+{
+}
+
 void AKSCharacter::Die_Implementation()
 {
 }
@@ -127,6 +135,7 @@ void AKSCharacter::OnInfectChanged(float OldValue, float NewValue)
 
 void AKSCharacter::OnAmmoChanged_Implementation(int32 OldValue, int32 NewValue)
 {
+
 }
 
 void AKSCharacter::OnRep_InfectionDensityChanged()
@@ -239,19 +248,25 @@ void AKSCharacter::InputShoot(const FInputActionValue& InputActionValue)
 {
 	if(InputActionValue.Get<bool>())
 	{
+		if(CombatComponent->Ammo > 0)
+			Shoot();
 		AbilityComponent->StartAbility(TAG_Ability_Shoot,this);
-		
+	
 	}
 	else
 	{
 		AbilityComponent->StopAbility(TAG_Ability_Shoot,this);
 	}
+
+
+	
 }
 
 void AKSCharacter::InputReload(const FInputActionValue& InputActionValue)
 {
 	if(InputActionValue.Get<bool>())
 	{
+		Reload();
 		AbilityComponent->StartAbility(TAG_Ability_Reload,this);
 		FTimerHandle TimerHandle;
 		FTimerDelegate TimerDelegate;

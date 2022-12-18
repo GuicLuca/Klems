@@ -16,21 +16,24 @@ class KLEMS_API AKSGameState : public AGameStateBase
 
 public:
 	UFUNCTION(BlueprintCallable)
-	void EndRound(APlayerController* winner);
+	void EndRound(FString winner);
 
 	UFUNCTION(BlueprintCallable)
 	void StartRound();
 
 	UFUNCTION(BlueprintCallable)
-	TMap<APlayerController* , int32> EndGame();
+	TArray<int32> EndGame();
 
 protected:
-	UPROPERTY(BlueprintReadOnly)
-	TMap<APlayerController* , int32> scores;
+	UPROPERTY(BlueprintReadWrite)
+	TArray<int32> scores;
+
+	UPROPERTY(BlueprintReadWrite)
+	TArray<FString> Players;
 
 	UPROPERTY(BlueprintReadWrite)
 	int32 nbRound;
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadWrite)
 	int32 numRound = 0;
 };

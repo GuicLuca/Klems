@@ -40,6 +40,12 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void stopInfection();
+
+	UFUNCTION(BlueprintNativeEvent)
+	void ShowTabUI();
+
+	UFUNCTION(BlueprintNativeEvent)
+	void HideTabUI();
 	
 	UPROPERTY(VisibleAnywhere, Category = "Ability")
 	TObjectPtr<UASAbilityComponent> AbilityComponent;
@@ -89,6 +95,8 @@ protected:
 
 	void InputPunch(const FInputActionValue& InputActionValue);
 	
+	void InputTab(const FInputActionValue& InputActionValue);
+	
 
 
 	UPROPERTY(VisibleAnywhere, Category="Camera")
@@ -99,6 +107,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	UKSInputConfig* InputConfig;
+
+	UPROPERTY(BlueprintReadWrite, Category="Pseudo")
+	FString pseudo;
 
 private:
 	FTimerHandle MemberTimerHandle;

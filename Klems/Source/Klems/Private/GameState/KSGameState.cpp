@@ -61,19 +61,19 @@ int32 AKSGameState::getSecond()
 
 	for(int32 i = 0; i<4 ; i++)
 	{
-		if (scores[i] != scores[first] && scores[i]!=scores[fourth])
+		if (i!=first && i!=fourth)
 		{
-			if (toCompare1 == NULL)
+			if(toCompare1==NULL)
 			{
-				toCompare1 = scores[i];
+				toCompare1 = i;
 			} else
 			{
-				toCompare2 = scores[i];
+				toCompare2 = i;
 			}
 		}
 	}
 
-	if (toCompare1 >= toCompare2)
+	if (scores[toCompare1] >= scores[toCompare2])
 	{
 		return toCompare1;
 	} else
@@ -92,19 +92,19 @@ int32 AKSGameState::getThird()
 
 	for(int32 i = 0; i<4 ; i++)
 	{
-		if (scores[i] != scores[first] && scores[i]!=scores[fourth])
+		if (i!=first && i!=fourth)
 		{
-			if (toCompare1 == NULL)
+			if(toCompare1==NULL)
 			{
-				toCompare1 = scores[i];
+				toCompare1 = i;
 			} else
 			{
-				toCompare2 = scores[i];
+				toCompare2 = i;
 			}
 		}
 	}
 
-	if (toCompare1 <= toCompare2)
+	if (scores[toCompare1] <= scores[toCompare2])
 	{
 		return toCompare1;
 	} else

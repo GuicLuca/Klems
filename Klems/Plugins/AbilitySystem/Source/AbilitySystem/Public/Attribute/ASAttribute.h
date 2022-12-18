@@ -67,10 +67,10 @@ private:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Attribute", meta=(AllowPrivateAccess=true))
 	FName Name;
 
-	UPROPERTY(ReplicatedUsing= OnRep_BaseValue, EditAnywhere, Category="Attribute")
+	UPROPERTY(Replicated, ReplicatedUsing= OnRep_BaseValue, EditAnywhere, Category="Attribute")
 	float BaseValue = 0;
 	
-	UPROPERTY(ReplicatedUsing= OnRep_CurrentValue, EditAnywhere, Category="Attribute")
+	UPROPERTY(Replicated, ReplicatedUsing= OnRep_CurrentValue, EditAnywhere, Category="Attribute")
 	float CurrentValue = 0;
 
 	UFUNCTION()

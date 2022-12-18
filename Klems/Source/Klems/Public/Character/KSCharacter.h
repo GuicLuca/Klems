@@ -38,7 +38,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void startInfection();
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintNativeEvent)
 	void stopInfection();
 
 	UFUNCTION(BlueprintNativeEvent)
@@ -63,6 +63,15 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TArray<TSubclassOf<UASAbility>> AbilitiesGrantedByInfection;
 
+	UPROPERTY(BlueprintReadWrite, Replicated, ReplicatedUsing=OnRep_InfectDensity)
+	float InfectionDensity = 0;
+
+	UFUNCTION()
+	void OnRep_InfectDensity();
+
+	UPROPERTY(BlueprintReadWrite, Replicated)
+	float Health = 100;
+
 	
 protected:
 	
@@ -71,6 +80,9 @@ protected:
 	
 	UFUNCTION()
 	void OnInfectChanged(float OldValue, float NewValue);
+
+	UFUNCTION()
+	void OnHealthChanged(float OldValue, float NewValue);
 
 	UFUNCTION(Server, Reliable)
 	void ServerSetInfectedMode();

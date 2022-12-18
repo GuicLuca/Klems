@@ -57,7 +57,29 @@ void AKSCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLife
 
 void AKSCharacter::SetInfectedMode()
 {
-	ServerSetInfectedMode();
+
+	//auto const InfectionAttribute = Attributes->GetAttribute(TAG_Attribute_Infection);
+	if(InfectionDensity >=1)
+	{
+		for(auto tag : AbilitiesRemovedByInfection)
+		{
+			AbilityComponent->RemoveAbility(tag);
+		}
+
+		for(auto ability : AbilitiesGrantedByInfection)
+		{
+			AbilityComponent->AddAbility(ability, this);
+		}
+
+		stopInfection();
+	}
+	
+	//ServerSetInfectedMode();
+}
+
+void AKSCharacter::startInfection()
+{
+	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AKSCharacter::addInfection, 1.0f, true);
 }
 
 void AKSCharacter::addInfection()
@@ -71,22 +93,16 @@ void AKSCharacter::addInfection()
 		if(tile)
 		{
 			const float infectionDensity = tile->InfectionDensity;
-			const auto InfectionAttribute = this->Attributes->GetAttribute(TAG_Attribute_Infection);
-			InfectionAttribute->SetCurrentValue(InfectionAttribute->GetCurrentValue()+infectionDensity);
+			this->InfectionDensity += infectionDensity;
+			//const auto InfectionAttribute = this->Attributes->GetAttribute(TAG_Attribute_Infection);
+			//InfectionAttribute->SetCurrentValue(InfectionAttribute->GetCurrentValue()+infectionDensity);
 			SetInfectedMode();
 			break;
 		}
 	}
 }
 
-void AKSCharacter::startInfection()
-{
-	if(!HasAuthority()) return;
-	
-	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AKSCharacter::addInfection, 1.0f, true);
-}
-
-void AKSCharacter::stopInfection()
+void AKSCharacter::stopInfection_Implementation()
 {
 	GetWorldTimerManager().ClearTimer(MemberTimerHandle);
 }
@@ -101,10 +117,6 @@ void AKSCharacter::ShowTabUI_Implementation()
 	
 }
 
-void AKSCharacter::OnInfectChanged(float OldValue, float NewValue)
-{
-	SetInfectedMode();
-}
 
 void AKSCharacter::ServerSetInfectedMode_Implementation()
 {
@@ -120,8 +132,42 @@ void AKSCharacter::ServerSetInfectedMode_Implementation()
 		{
 			AbilityComponent->AddAbility(ability, this);
 		}
-		
+
+		stopInfection();
 	}
+}
+
+void AKSCharacter::OnInfectChanged(float OldValue, float NewValue)
+{
+	if(HasAuthority())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Server Infect ValueChanged"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Client Infect ValueChanged"));
+	}
+		
+	this->InfectionDensity = NewValue;
+	SetInfectedMode();
+}
+
+void AKSCharacter::OnHealthChanged(float OldValue, float NewValue)
+{
+	if(HasAuthority())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Server Health ValueChanged"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Client Health ValueChanged"));
+	}
+	this->Health = NewValue;
+}
+
+void AKSCharacter::OnRep_InfectDensity()
+{
+	UE_LOG(LogTemp,Warning, TEXT("Infection modified"));
 }
 
 void AKSCharacter::OnSpeedChanged(float OldValue, float NewValue)
@@ -136,8 +182,9 @@ void AKSCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	/*
 	checkf(Attributes, TEXT("Character component ill formed ! BP corruption?"));
-
+	
 	auto* SpeedAttribute = Attributes->GetAttribute(TAG_Attribute_Speed);
 	if(!ensureAlwaysMsgf(SpeedAttribute, TEXT("No speed attribute, your character is ill formated !"))) return;
 
@@ -148,6 +195,13 @@ void AKSCharacter::BeginPlay()
 
 	InfectAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnInfectChanged);
 
+	auto* HealthAttribute = Attributes->GetAttribute(TAG_Attribute_Health);
+	if(!ensureAlwaysMsgf(HealthAttribute, TEXT("No health attribute, your character is ill formated !"))) return;
+
+	HealthAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnHealthChanged);
+
+	*/
+	
 	startInfection();
 	
 }

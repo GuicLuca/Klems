@@ -196,6 +196,7 @@ void AKSCharacter::InputShoot(const FInputActionValue& InputActionValue)
 	if(InputActionValue.Get<bool>())
 	{
 		AbilityComponent->StartAbility(TAG_Ability_Shoot,this);
+		
 	}
 	else
 	{

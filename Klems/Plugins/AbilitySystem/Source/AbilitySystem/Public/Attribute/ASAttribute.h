@@ -45,10 +45,10 @@ public:
 		return CurrentValue = NewCurrentValue;
 	}
 
-	UPROPERTY(BlueprintReadWrite, Category="Attribute")
+	UPROPERTY(BlueprintCallable, BlueprintAssignable,Category="Attribute")
 	FAttributeBaseValueChangedDelegate BaseValueChanged;
 
-	UPROPERTY(BlueprintReadWrite, Category="Attribute")
+	UPROPERTY(BlueprintCallable, BlueprintAssignable, Category="Attribute")
 	FAttributeCurrentValueChangedDelegate CurrentValueChanged;
 
 	UFUNCTION(BlueprintCallable, Category="Attribute")

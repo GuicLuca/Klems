@@ -28,3 +28,4 @@ UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_Attribute_Speed);
 
 // Native modifiers Gameplay Tags
 UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_Modifier_Infection);
+

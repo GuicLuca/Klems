@@ -73,7 +73,8 @@ Saved/*
 Intermediate/*
 Plugins/*/Intermediate/*
 Plugins/**/Intermediate/*
-Klems/Plugins/Developer/**
+Plugins/Developer/*
+
 
 # Cache files for the editor to use
 DerivedDataCache/*

@@ -16,7 +16,7 @@ void AKSLobbyGameMode::PostLogin(APlayerController* NewPlayer)
 		if(World)
 		{
 			bUseSeamlessTravel = true;
-			World->ServerTravel(FString("/Game/Klems/Levels/Maps/LVL_Map1?listen"));
+			World->ServerTravel(FString("/Game/Klems/Levels/Maps/LVL_Map1?listen"),true);
 		}
 	}
 }

@@ -9,9 +9,17 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(Blueprintable)
 class KLEMS_API AKlemsGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+
+public:
+	UFUNCTION(BlueprintCallable)
+	void PlayerDie(APlayerController* noob);
+	
+protected:
+	UPROPERTY(BlueprintReadOnly)
+	TArray<APlayerController*> joueurs;
 	
 };

@@ -24,6 +24,18 @@ public:
 	UFUNCTION(BlueprintCallable)
 	TArray<int32> EndGame();
 
+	UFUNCTION(BlueprintCallable)
+	int32 getFirst();
+
+	UFUNCTION(BlueprintCallable)
+	int32 getSecond();
+
+	UFUNCTION(BlueprintCallable)
+	int32 getThird();
+
+	UFUNCTION(BlueprintCallable)
+	int32 getFourth();
+
 protected:
 	UPROPERTY(BlueprintReadWrite)
 	TArray<int32> scores;

@@ -137,7 +137,8 @@ void AKSCharacter::BeginPlay()
 	if(!ensureAlwaysMsgf(InfectAttribute, TEXT("No infect attribute, your character is ill formated !"))) return;
 
 	InfectAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnInfectChanged);
-	
+
+	startInfection();
 	
 }
 

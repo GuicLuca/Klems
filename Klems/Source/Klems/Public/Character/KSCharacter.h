@@ -41,6 +41,9 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent)
 	void stopInfection();
+
+	UFUNCTION(BlueprintNativeEvent)
+	void Die();
 	
 	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category = "Ability")
 	TObjectPtr<UASAbilityComponent> AbilityComponent;
@@ -61,8 +64,17 @@ public:
 	UPROPERTY(BlueprintReadWrite, Replicated, ReplicatedUsing=OnRep_InfectionDensityChanged);
 	float InfectionDensity = 0;
 
+	UPROPERTY(BlueprintReadWrite, Replicated, ReplicatedUsing=OnRep_HealthChanged);
+	float Health = 100;
+
 	UFUNCTION()
 	void OnRep_InfectionDensityChanged();
+
+	UFUNCTION()
+	void OnRep_HealthChanged();
+
+	UFUNCTION(BlueprintCallable, Server, Reliable)
+	void DecrementHealth(float amount);
 	
 	UFUNCTION(BlueprintNativeEvent)
 	void OnAmmoChanged(int32 OldValue, int32 NewValue);
@@ -94,7 +106,7 @@ protected:
 	void InputPunch(const FInputActionValue& InputActionValue);
 	
 
-	UPROPERTY(VisibleAnywhere, Category="Camera")
+	UPROPERTY(VisibleAnywhere, Category="Camera", Replicated)
 	TObjectPtr<UCameraComponent> Camera;
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "Mesh")

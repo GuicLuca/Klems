@@ -54,6 +54,8 @@ void AKSCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLife
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(AKSCharacter,InfectionDensity);
+	DOREPLIFETIME(AKSCharacter,Health);
+	DOREPLIFETIME(AKSCharacter,Camera);
 }
 
 void AKSCharacter::SetInfectedMode()
@@ -93,6 +95,10 @@ void AKSCharacter::addInfection()
 	}
 }
 
+void AKSCharacter::Die_Implementation()
+{
+}
+
 void AKSCharacter::startInfection_Implementation()
 {
 	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AKSCharacter::addInfection, 1.0f, true);
@@ -126,6 +132,19 @@ void AKSCharacter::OnAmmoChanged_Implementation(int32 OldValue, int32 NewValue)
 void AKSCharacter::OnRep_InfectionDensityChanged()
 {
 	SetInfectedMode();
+}
+
+void AKSCharacter::OnRep_HealthChanged()
+{
+	if(Health <= 0)
+		Die();
+}
+
+void AKSCharacter::DecrementHealth_Implementation(float amount)
+{
+	Health -= amount;
+	if(Health <= 0)
+		Die();
 }
 
 void AKSCharacter::OnSpeedChanged(float OldValue, float NewValue)

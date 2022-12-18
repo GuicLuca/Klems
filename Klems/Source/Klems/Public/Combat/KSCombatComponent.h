@@ -36,16 +36,14 @@ public:
 	void DecrementAmmo(int32 AmmoNumber);
 
 	UFUNCTION(BlueprintCallable)
-	void DecrementHealth(int32 amount);
-
-	UFUNCTION(BlueprintCallable)
 	bool CanShoot();
 
 	UFUNCTION()
 	void OnRep_OnAmmoChanged();
+	
 
-	UFUNCTION()
-	void OnRep_OnHealthChanged();
+	UFUNCTION(BlueprintNativeEvent)
+	void Die();
 	
 	UPROPERTY(BlueprintCallable)
 	FOnFire OnFireDelegate;
@@ -76,14 +74,14 @@ protected:
 	UPROPERTY(Replicated,BlueprintReadWrite,ReplicatedUsing=OnRep_OnAmmoChanged)
 	int32 Ammo;
 
-	UPROPERTY(Replicated,BlueprintReadWrite,ReplicatedUsing=OnRep_OnHealthChanged)
-	int32 Health = 100;
+	//UPROPERTY(Replicated,BlueprintReadWrite,ReplicatedUsing=OnRep_OnHealthChanged)
+	//int32 Health = 100;
 
 	UPROPERTY(EditDefaultsOnly)
 	int32 MaxAmmo;
 
-	UPROPERTY(EditDefaultsOnly)
-	int32 MaxHealth;
+	//PROPERTY(EditDefaultsOnly)
+	//int32 MaxHealth;
 
 
 };

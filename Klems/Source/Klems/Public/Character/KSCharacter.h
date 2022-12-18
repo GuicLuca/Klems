@@ -47,7 +47,7 @@ public:
 	UFUNCTION(BlueprintNativeEvent)
 	void HideTabUI();
 	
-	UPROPERTY(VisibleAnywhere, Category = "Ability")
+	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category = "Ability")
 	TObjectPtr<UASAbilityComponent> AbilityComponent;
 
 	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category = "Attribute")
@@ -63,7 +63,8 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TArray<TSubclassOf<UASAbility>> AbilitiesGrantedByInfection;
 
-	
+	UFUNCTION(BlueprintNativeEvent)
+	void OnAmmoChanged(int32 OldValue, int32 NewValue);
 protected:
 	
 	UFUNCTION()
@@ -72,6 +73,8 @@ protected:
 	UFUNCTION()
 	void OnInfectChanged(float OldValue, float NewValue);
 
+
+	
 	UFUNCTION(Server, Reliable)
 	void ServerSetInfectedMode();
 

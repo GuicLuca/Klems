@@ -20,16 +20,11 @@ void UKSCombatComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& O
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(UKSCombatComponent,Ammo);
 }
-void UKSCombatComponent::Fire()
-{
-	Ammo--;
-	OnFireDelegate.Broadcast();
-}
 
 
 void UKSCombatComponent::Reload()
 {
-	Ammo=10;
+	Ammo=MaxAmmo;
 	OnReloadDelegate.Broadcast();
 
 }
@@ -69,7 +64,28 @@ void UKSCombatComponent::EquipWeapon(AKSWeapon* Weapon,AKSWeapon* WeaponFPS)
 		//EquippedWeapon->SetActorRelativeLocation(FVector::Zero());
 		//By default actor does not have owner since we are equipping it we are its owner
 		EquippedWeaponFPS->SetOwner(Character);
+
+		Ammo = MaxAmmo;
 	}
+}
+
+void UKSCombatComponent::DecrementAmmo(int32 AmmoNumber)
+{
+	
+	if(Ammo-AmmoNumber < 0) return;
+	OnFireDelegate.Broadcast();
+	Ammo--;
+}
+
+bool UKSCombatComponent::CanShoot()
+{
+	return (Ammo > 0);
+}
+
+void UKSCombatComponent::OnRep_OnAmmoChanged()
+{
+	if(!Character) return;
+	Character->OnAmmoChanged(0,Ammo);
 }
 
 

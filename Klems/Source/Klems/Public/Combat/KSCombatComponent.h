@@ -29,7 +29,7 @@ public:
 	void Reload();
 
 	UFUNCTION(BlueprintCallable)
-	void EquipWeapon(AKSWeapon* Weapon);
+	void EquipWeapon(AKSWeapon* Weapon,AKSWeapon* WeaponFPS);
 
 	UPROPERTY(BlueprintCallable)
 	FOnFire OnFireDelegate;
@@ -43,6 +43,9 @@ protected:
 
 	UPROPERTY(VisibleAnywhere)
 	AKSWeapon* EquippedWeapon;
+
+	UPROPERTY(VisibleAnywhere)
+	AKSWeapon* EquippedWeaponFPS;
 	
 	UPROPERTY(EditDefaultsOnly)
 	FName WeaponSocketName;

@@ -10,8 +10,9 @@ AKSWeapon::AKSWeapon()
 {
 	PrimaryActorTick.bCanEverTick = false;
 
+	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root Component"));
 	WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Weapon Mesh"));
-
+	WeaponMesh->SetupAttachment(RootComponent);
 }
 
 

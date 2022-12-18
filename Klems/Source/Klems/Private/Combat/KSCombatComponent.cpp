@@ -40,11 +40,12 @@ void UKSCombatComponent::BeginPlay()
 	
 }
 
-void UKSCombatComponent::EquipWeapon(AKSWeapon* Weapon)
+void UKSCombatComponent::EquipWeapon(AKSWeapon* Weapon,AKSWeapon* WeaponFPS)
 {
 	{
 		if(!ensure(Character)) return;
 		if(!Weapon) return;
+		if(!WeaponFPS) return;
 		//if(!Character->HasAuthority()) return;
 
 		EquippedWeapon = Weapon;
@@ -52,11 +53,22 @@ void UKSCombatComponent::EquipWeapon(AKSWeapon* Weapon)
 		if(!ensure(HandSocket)) return;
 	
 		//Attaching is always replicated by Unreal so no need to replicate
-		EquippedWeapon->SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));
+		EquippedWeapon->SetActorRotation(FRotator(90.0f, 90.0f, 90.0f));
 		HandSocket->AttachActor(EquippedWeapon, Character->GetMesh());
-		EquippedWeapon->SetActorRelativeLocation(FVector::Zero());
+		//EquippedWeapon->SetActorRelativeLocation(FVector::Zero());
 		//By default actor does not have owner since we are equipping it we are its owner
 		EquippedWeapon->SetOwner(Character);
+
+		EquippedWeaponFPS = WeaponFPS;
+		const auto* HandSocketFPS = Character->GetFPSMesh()->GetSocketByName(WeaponSocketName);
+		if(!ensure(HandSocketFPS)) return;
+	
+		//Attaching is always replicated by Unreal so no need to replicate
+		EquippedWeaponFPS->SetActorRotation(FRotator(90.0f, 90.0f, 90.0f));
+		HandSocketFPS->AttachActor(EquippedWeaponFPS, Character->GetFPSMesh());
+		//EquippedWeapon->SetActorRelativeLocation(FVector::Zero());
+		//By default actor does not have owner since we are equipping it we are its owner
+		EquippedWeaponFPS->SetOwner(Character);
 	}
 }
 

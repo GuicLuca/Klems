@@ -19,6 +19,7 @@ void UKSCombatComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& O
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(UKSCombatComponent,Ammo);
+	DOREPLIFETIME(UKSCombatComponent,Health);
 }
 
 
@@ -65,6 +66,7 @@ void UKSCombatComponent::EquipWeapon(AKSWeapon* Weapon,AKSWeapon* WeaponFPS)
 		EquippedWeaponFPS->SetOwner(Character);
 
 		Ammo = MaxAmmo;
+		Health = MaxHealth;
 	}
 }
 
@@ -76,6 +78,12 @@ void UKSCombatComponent::DecrementAmmo(int32 AmmoNumber)
 	Ammo--;
 }
 
+void UKSCombatComponent::DecrementHealth(int32 amount)
+{
+	OnHitDelegate.Broadcast();
+	Health -= amount;
+}
+
 bool UKSCombatComponent::CanShoot()
 {
 	return (Ammo > 0);
@@ -85,6 +93,11 @@ void UKSCombatComponent::OnRep_OnAmmoChanged()
 {
 	if(!Character) return;
 	Character->OnAmmoChanged(0,Ammo);
+}
+
+void UKSCombatComponent::OnRep_OnHealthChanged()
+{
+
 }
 
 

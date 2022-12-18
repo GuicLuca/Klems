@@ -63,11 +63,14 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TArray<TSubclassOf<UASAbility>> AbilitiesGrantedByInfection;
 
-	UPROPERTY(BlueprintReadWrite, Replicated, ReplicatedUsing=OnRep_InfectDensity)
+	UPROPERTY(BlueprintReadWrite, Replicated, ReplicatedUsing=OnRep_HealthChanged);
 	float InfectionDensity = 0;
 
 	UFUNCTION()
-	void OnRep_InfectDensity();
+	void OnRep_HealthChanged();
+
+	UFUNCTION(BlueprintCallable)
+	void DecrementHealth(float amount);
 
 	UPROPERTY(BlueprintReadWrite, Replicated)
 	float Health = 100;

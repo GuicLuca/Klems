@@ -166,12 +166,17 @@ void AKSCharacter::OnHealthChanged(float OldValue, float NewValue)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Client Health ValueChanged"));
 	}
-	this->Health = NewValue;
+	Health = NewValue;
 }
 
-void AKSCharacter::OnRep_InfectDensity()
+
+void AKSCharacter::OnRep_HealthChanged()
 {
-	UE_LOG(LogTemp,Warning, TEXT("Infection modified"));
+}
+
+void AKSCharacter::DecrementHealth(float amount)
+{
+	Health-=amount;
 }
 
 void AKSCharacter::OnSpeedChanged(float OldValue, float NewValue)
@@ -186,7 +191,7 @@ void AKSCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	/*
+	
 	checkf(Attributes, TEXT("Character component ill formed ! BP corruption?"));
 	
 	auto* SpeedAttribute = Attributes->GetAttribute(TAG_Attribute_Speed);
@@ -194,15 +199,17 @@ void AKSCharacter::BeginPlay()
 
 	SpeedAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnSpeedChanged);
 
-	auto* InfectAttribute = Attributes->GetAttribute(TAG_Attribute_Infection);
-	if(!ensureAlwaysMsgf(InfectAttribute, TEXT("No infect attribute, your character is ill formated !"))) return;
-
-	InfectAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnInfectChanged);
-
+	/*
 	auto* HealthAttribute = Attributes->GetAttribute(TAG_Attribute_Health);
 	if(!ensureAlwaysMsgf(HealthAttribute, TEXT("No health attribute, your character is ill formated !"))) return;
 
 	HealthAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnHealthChanged);
+
+	
+	auto* InfectAttribute = Attributes->GetAttribute(TAG_Attribute_Infection);
+	if(!ensureAlwaysMsgf(InfectAttribute, TEXT("No infect attribute, your character is ill formated !"))) return;
+
+	InfectAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnInfectChanged);
 
 	*/
 	

@@ -10,6 +10,7 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnFire);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnReload);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnHit);
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class KLEMS_API UKSCombatComponent : public UActorComponent
@@ -35,16 +36,25 @@ public:
 	void DecrementAmmo(int32 AmmoNumber);
 
 	UFUNCTION(BlueprintCallable)
+	void DecrementHealth(int32 amount);
+
+	UFUNCTION(BlueprintCallable)
 	bool CanShoot();
 
 	UFUNCTION()
 	void OnRep_OnAmmoChanged();
+
+	UFUNCTION()
+	void OnRep_OnHealthChanged();
 	
 	UPROPERTY(BlueprintCallable)
 	FOnFire OnFireDelegate;
 	
 	UPROPERTY(BlueprintCallable)
 	FOnReload OnReloadDelegate;
+
+	UPROPERTY(BlueprintCallable)
+	FOnHit OnHitDelegate;
 
 protected:
 	// Called when the game starts
@@ -66,8 +76,14 @@ protected:
 	UPROPERTY(Replicated,BlueprintReadWrite,ReplicatedUsing=OnRep_OnAmmoChanged)
 	int32 Ammo;
 
+	UPROPERTY(Replicated,BlueprintReadWrite,ReplicatedUsing=OnRep_OnHealthChanged)
+	int32 Health = 100;
+
 	UPROPERTY(EditDefaultsOnly)
 	int32 MaxAmmo;
+
+	UPROPERTY(EditDefaultsOnly)
+	int32 MaxHealth;
 
 
 };

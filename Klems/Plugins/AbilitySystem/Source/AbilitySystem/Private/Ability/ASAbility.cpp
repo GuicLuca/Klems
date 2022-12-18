@@ -74,7 +74,7 @@ FGameplayTagContainer UASAbility::IsBlockedBy(AActor* Instigator)
 UWorld* UASAbility::GetWorld() const
 {
 	const auto* Comp = GetOwningComponent();
-	if (!ensure(Comp))
+	if (!Comp)
 	{
 		return nullptr;
 	}

@@ -11,6 +11,7 @@ UE_DEFINE_GAMEPLAY_TAG(TAG_Input_Crouch, "Input.Crouch")
 UE_DEFINE_GAMEPLAY_TAG(TAG_Input_Shoot, "Input.Shoot")
 UE_DEFINE_GAMEPLAY_TAG(TAG_Input_Reload, "Input.Reload")
 UE_DEFINE_GAMEPLAY_TAG(TAG_Input_Punch, "Input.Punch")
+UE_DEFINE_GAMEPLAY_TAG(TAG_Input_TabUI, "Input.TabUI")
 
 UE_DEFINE_GAMEPLAY_TAG(TAG_Ability_Run, "Ability.Movement.Run")
 UE_DEFINE_GAMEPLAY_TAG(TAG_Ability_Shoot, "Ability.Offensive.Shoot")

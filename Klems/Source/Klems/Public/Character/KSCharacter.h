@@ -44,6 +44,12 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent)
 	void Die();
+
+	UFUNCTION(BlueprintNativeEvent)
+	void Shoot();
+
+	UFUNCTION(BlueprintNativeEvent)
+	void Reload();
 	
 	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category = "Ability")
 	TObjectPtr<UASAbilityComponent> AbilityComponent;

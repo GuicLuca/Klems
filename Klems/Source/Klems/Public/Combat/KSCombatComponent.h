@@ -40,7 +40,6 @@ public:
 
 	UFUNCTION()
 	void OnRep_OnAmmoChanged();
-	
 
 	UFUNCTION(BlueprintNativeEvent)
 	void Die();
@@ -53,6 +52,9 @@ public:
 
 	UPROPERTY(BlueprintCallable)
 	FOnHit OnHitDelegate;
+
+	UPROPERTY(Replicated,BlueprintReadWrite,ReplicatedUsing=OnRep_OnAmmoChanged)
+	int32 Ammo;
 
 protected:
 	// Called when the game starts
@@ -71,8 +73,7 @@ protected:
 	AKSCharacter* Character;
 
 	
-	UPROPERTY(Replicated,BlueprintReadWrite,ReplicatedUsing=OnRep_OnAmmoChanged)
-	int32 Ammo;
+	
 
 	//UPROPERTY(Replicated,BlueprintReadWrite,ReplicatedUsing=OnRep_OnHealthChanged)
 	//int32 Health = 100;
@@ -82,6 +83,7 @@ protected:
 
 	//PROPERTY(EditDefaultsOnly)
 	//int32 MaxHealth;
+	
 
 
 };

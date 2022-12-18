@@ -28,7 +28,7 @@ public:
 	UFUNCTION(BlueprintNativeEvent, Category="Ability")
 	bool CanStop(AActor* Instigator);
 
-	UFUNCTION(BlueprintNativeEvent, Category="Ability")
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="Ability")
 	bool Stop(AActor* Instigator);
 
 	UFUNCTION(BlueprintCallable, Category="Ability")

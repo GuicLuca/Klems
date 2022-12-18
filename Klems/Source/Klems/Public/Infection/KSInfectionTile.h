@@ -25,7 +25,7 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Material")
 	UMaterialInstanceDynamic* TileDynamicMat = nullptr;
 
-	UPROPERTY(Replicated, ReplicatedUsing=OnRep_InfectionDensity)
+	UPROPERTY(BlueprintReadWrite, Replicated, ReplicatedUsing=OnRep_InfectionDensity)
 	float InfectionDensity = 0;
 
 	UFUNCTION()

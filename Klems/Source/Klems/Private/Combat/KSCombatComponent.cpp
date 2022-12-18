@@ -26,7 +26,6 @@ void UKSCombatComponent::Reload()
 {
 	Ammo=MaxAmmo;
 	OnReloadDelegate.Broadcast();
-
 }
 
 void UKSCombatComponent::BeginPlay()

@@ -149,12 +149,12 @@ void AKSCharacter::BeginPlay()
 
 	auto* InfectAttribute = Attributes->GetAttribute(TAG_Attribute_Infection);
 	if(!ensureAlwaysMsgf(InfectAttribute, TEXT("No infect attribute, your character is ill formated !"))) return;
-
+ddd
 	InfectAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnInfectChanged);
 
 	startInfection();
 	
-w}
+}
 
 void AKSCharacter::InputMove(const FInputActionValue& InputActionValue)
 {

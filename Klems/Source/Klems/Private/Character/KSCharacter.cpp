@@ -251,11 +251,13 @@ void AKSCharacter::InputShoot(const FInputActionValue& InputActionValue)
 		if(CombatComponent->Ammo > 0)
 			Shoot();
 		AbilityComponent->StartAbility(TAG_Ability_Shoot,this);
+		AbilityComponent->StartAbility(TAG_Ability_Punch,this);
 	
 	}
 	else
 	{
 		AbilityComponent->StopAbility(TAG_Ability_Shoot,this);
+		AbilityComponent->StopAbility(TAG_Ability_Punch,this);
 	}
 
 

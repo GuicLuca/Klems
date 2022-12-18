@@ -3,7 +3,6 @@
 
 #include "Klems/Public/Infection/KSInfectionTile.h"
 
-#include "IContentBrowserSingleton.h"
 #include "Character/KSCharacter.h"
 #include "GameplayTags/KSGameplayTags.h"
 #include "Net/UnrealNetwork.h"

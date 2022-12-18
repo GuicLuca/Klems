@@ -25,7 +25,7 @@ void UKSCombatComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& O
 
 void UKSCombatComponent::Reload()
 {
-	Ammo=MaxAmmo;
+	Ammo=-1;
 	OnReloadDelegate.Broadcast();
 }
 

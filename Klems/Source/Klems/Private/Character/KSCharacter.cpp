@@ -95,6 +95,10 @@ void AKSCharacter::addInfection()
 	}
 }
 
+void AKSCharacter::TakeHit_Implementation()
+{
+}
+
 void AKSCharacter::Reload_Implementation()
 {
 }
@@ -147,6 +151,7 @@ void AKSCharacter::OnRep_InfectionDensityChanged()
 
 void AKSCharacter::OnRep_HealthChanged()
 {
+	TakeHit();
 	if(Health <= 0)
 		Die();
 }

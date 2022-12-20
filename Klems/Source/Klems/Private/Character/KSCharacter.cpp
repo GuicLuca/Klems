@@ -174,7 +174,6 @@ void AKSCharacter::OnSpeedChanged(float OldValue, float NewValue)
 void AKSCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-
 	
 	checkf(Attributes, TEXT("Character component ill formed ! BP corruption?"));
 	

@@ -10,7 +10,7 @@ void USKSearchSessionWidget::WorkOnSession(const FOTSessionSearchResult& session
 	CurrentPlayer = session.Session.SessionSettings.NumPublicConnections - session.Session.NumOpenPublicConnections;
 	MaxPlayers = session.Session.SessionSettings.NumPublicConnections;
 	SessionName = session.Session.OwningUserName;
-	session.Session.SessionSettings.Get(FName("IsPrivate"),bIsPrivate);
+	//session.Session.SessionSettings.Get(FName("IsPrivate"),bIsPrivate);
 	SessionId = session.Session.GetSessionIdStr();
 	
 	

@@ -17,6 +17,8 @@ void AKSLobbyGameMode::BeginPlay()
 	GetGameState<AKSLobbyGameState>()->OnPlayerChangeState.AddDynamic(this,&AKSLobbyGameMode::StartGame);
 }
 
+
+
 void AKSLobbyGameMode::StartGame()
 {
 	const auto* gamestate = GetGameState<AKSLobbyGameState>();

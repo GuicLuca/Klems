@@ -3,6 +3,25 @@
 
 #include "GameState/KSLobbyGameState.h"
 
+#include "Engine/ActorChannel.h"
+
+bool AKSLobbyGameState::ReplicateSubobjects(UActorChannel* Channel, FOutBunch* Bunch, FReplicationFlags* RepFlags)
+{
+	bool result = Super::ReplicateSubobjects(Channel, Bunch, RepFlags);
+
+	for(auto* PlayerCtrl : PlayerReady)
+	{
+		if(!PlayerCtrl) continue;
+		result |= Channel->ReplicateSubobject(PlayerCtrl, *Bunch, *RepFlags);
+	}
+	return result;
+}
+
+int32 AKSLobbyGameState::GetAmoutOfReadyPLayer() const
+{
+	return PlayerReady.Num();
+}
+
 void AKSLobbyGameState::setReady(APlayerController* PLayer, bool status)
 {
 	if(status)
@@ -23,4 +42,9 @@ void AKSLobbyGameState::setReady(APlayerController* PLayer, bool status)
 			OnPlayerChangeState.Broadcast();
 		}
 	}
+}
+
+bool AKSLobbyGameState::IsReady(APlayerController* Player)
+{
+	return PlayerReady.Contains(Player);
 }

@@ -22,5 +22,6 @@ private:
 	UFUNCTION()
 	virtual void StartGame();
 	
+	
 	GENERATED_BODY()
 };

@@ -19,14 +19,20 @@ class KLEMS_API AKSLobbyGameState : public AGameStateBase
 {
 	GENERATED_BODY()
 public:
+	virtual bool ReplicateSubobjects(UActorChannel* Channel, FOutBunch* Bunch, FReplicationFlags* RepFlags) override;
+	
 	FKSPLayerChangeStateDelegate OnPlayerChangeState;
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite)
 	TArray<APlayerController*> PlayerReady;
 
+	UFUNCTION(BlueprintCallable, Category="Player Status")
+	int32 GetAmoutOfReadyPLayer() const;
+
 	/** Set the player status, if all player of the session are ready, the game will start */
-	UFUNCTION(BlueprintCallable, Category="Player")
+	UFUNCTION(BlueprintCallable, Category="Player Status")
 	void setReady(APlayerController* Player, bool status);
 
-	
+	UFUNCTION(BlueprintCallable, Category="Player Status")
+	bool IsReady(APlayerController* Player);
 };

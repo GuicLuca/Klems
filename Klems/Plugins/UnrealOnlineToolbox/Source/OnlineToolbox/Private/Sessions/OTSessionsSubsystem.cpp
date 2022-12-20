@@ -30,7 +30,7 @@ void UOTSessionsSubsystem::Deinitialize()
 	Super::Deinitialize();
 }
 
-void UOTSessionsSubsystem::CreateSession(int32 NumPublicConnections, const FString& MatchType)
+void UOTSessionsSubsystem::CreateSession(int32 NumConnections, const FString& MatchType, const bool bIsPrivate)
 {
 	if(!ensureMsgf(SessionInterface.IsValid(), TEXT("Unable to get the Session Interface"))) return;
 
@@ -39,7 +39,7 @@ void UOTSessionsSubsystem::CreateSession(int32 NumPublicConnections, const FStri
 	if(ExistingSession != nullptr)
 	{
 		bCreateSessionOnDestroy = true;
-		LastNumPublicConnections = NumPublicConnections;
+		LastNumPublicConnections = NumConnections;
 		LastMatchType = MatchType;
 		DestroySession();
 		return;
@@ -53,13 +53,26 @@ void UOTSessionsSubsystem::CreateSession(int32 NumPublicConnections, const FStri
 	LastSessionSettings = MakeShareable(new FOnlineSessionSettings());
 	
 	//If we are using the NULL subsystem it is a LAN match. Otherwise it is an online match
-	LastSessionSettings->bIsLANMatch = true;
-	LastSessionSettings->NumPublicConnections = NumPublicConnections;
+	LastSessionSettings->bIsLANMatch = IOnlineSubsystem::Get()->GetSubsystemName() == "NULL";
 	LastSessionSettings->bUseLobbiesIfAvailable = true;
-	LastSessionSettings->bAllowJoinInProgress = true;
-	LastSessionSettings->bAllowJoinViaPresence = true;
-	LastSessionSettings->bShouldAdvertise = true;
-	LastSessionSettings->bUsesPresence = true;
+
+	if(bIsPrivate)
+	{
+		LastSessionSettings->NumPrivateConnections = NumConnections;
+		LastSessionSettings->bShouldAdvertise = false;
+		LastSessionSettings->bAllowJoinInProgress = false;
+		LastSessionSettings->bAllowJoinViaPresence = false;
+	}
+		
+	else
+	{
+		LastSessionSettings->NumPublicConnections = NumConnections;
+		LastSessionSettings->bShouldAdvertise = true;
+		LastSessionSettings->bAllowJoinInProgress = false;
+		LastSessionSettings->bAllowJoinViaPresence = true;
+	}
+	
+
 	LastSessionSettings->Set(FName("MatchType"), MatchType, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
 
 #if !UE_BUILD_SHIPPING
@@ -92,7 +105,7 @@ void UOTSessionsSubsystem::FindSessions(int32 MaxSearchResults, const FString& M
 	LastSessionSearch = MakeShareable(new FOnlineSessionSearch());
 	LastSessionSearch->MaxSearchResults = MaxSearchResults;
 	LastSessionSearch->bIsLanQuery = IOnlineSubsystem::Get()->GetSubsystemName() == "NULL";
-	LastSessionSearch->QuerySettings.Set(SEARCH_PRESENCE, true, EOnlineComparisonOp::Equals);
+	//LastSessionSearch->QuerySettings.Set(SEARCH_PRESENCE, true, EOnlineComparisonOp::Equals);
 	LastSessionSearch->QuerySettings.Set(FName("MatchType"), MatchType, EOnlineComparisonOp::Equals);
 	
 	const ULocalPlayer* LocalPLayer = GetWorld()->GetFirstLocalPlayerFromController();
@@ -256,7 +269,7 @@ void UOTSessionsSubsystem::OnDestroySessionComplete(FName SessionName, bool bWas
 
 	if(!bWasSuccessful || !bCreateSessionOnDestroy) return;
 
-	CreateSession(LastNumPublicConnections, LastMatchType);
+	CreateSession(LastNumPublicConnections, LastMatchType,false);
 }
 
 void UOTSessionsSubsystem::OnStartSessionComplete(FName SessionName, bool bWasSuccessful)

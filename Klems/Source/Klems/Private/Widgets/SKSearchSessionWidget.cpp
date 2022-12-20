@@ -10,4 +10,5 @@ void USKSearchSessionWidget::WorkOnSession(const FOTSessionSearchResult& session
 	CurrentPlayer = session.Session.SessionSettings.NumPublicConnections - session.Session.NumOpenPublicConnections;
 	MaxPlayers = session.Session.SessionSettings.NumPublicConnections;
 	SessionId = session.Session.OwningUserName;
+	
 }

@@ -39,13 +39,14 @@ void UOTSessionMenu::MenuSetup()
 
 void UOTSessionMenu::HostSession(const FString& Lobby,
 	int32 NumPublicConnection /*= 4*/,
-	const FString& MatchType /*= "FreeForAll"*/)
+	const FString& MatchType /*= "FreeForAll"*/,
+	const bool bIsPrivate /*= false*/)
 {
 	if(!ensureMsgf(OTSessionsSubsystem != nullptr,
 		TEXT("Multiplayer Session Subsystem is not set. Did you call MenuSetup?"))) return;
 
 	LobbyMap = Lobby;
-	OTSessionsSubsystem->CreateSession(NumPublicConnection, MatchType);
+	OTSessionsSubsystem->CreateSession(NumPublicConnection, MatchType,bIsPrivate);
 }
 
 void UOTSessionMenu::FindSession(int32 MaxSessionNumber, const FString& MatchType)

@@ -37,11 +37,11 @@ public:
 	
 	/**
 	 * @brief 
-	 * @param NumPublicConnections 
+	 * @param NumConnections 
 	 * @param MatchType 
 	 */
 	UFUNCTION(BlueprintCallable)
-	void CreateSession(int32 NumPublicConnections, const FString& MatchType);
+	void CreateSession(int32 NumConnections, const FString& MatchType, const bool bIsPrivate);
 
 	/**
 	 * @brief 

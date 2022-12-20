@@ -34,6 +34,8 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void JoinSession(const FOTSessionSearchResult& session);
 
+	
+	
 	virtual void NativeDestruct() override;
 	
 	// Callbacks for the toolbox session subsystem

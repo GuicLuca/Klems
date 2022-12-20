@@ -8,7 +8,9 @@ public class Klems : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "OnlineToolbox", "AbilitySystem", "EnhancedInput", "GameplayTags", "OnlineSubsystem", "OnlineSubsystemUtils"});
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "OnlineToolbox", "AbilitySystem", "EnhancedInput", "GameplayTags", "OnlineSubsystem", "OnlineSubsystemUtils","Slate",
+			"SlateCore",
+			"UMG"});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

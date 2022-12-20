@@ -5,6 +5,7 @@
 
 #include "Sessions/OTSessionsSubsystem.h"
 
+
 void UOTSessionMenu::MenuSetup()
 {
 	AddToViewport();
@@ -13,6 +14,7 @@ void UOTSessionMenu::MenuSetup()
 
 	if(UWorld* World = GetWorld())
 	{
+	
 		if(APlayerController* PlayerController = World->GetFirstPlayerController())
 		{
 			FInputModeUIOnly InputModeData;
@@ -21,6 +23,7 @@ void UOTSessionMenu::MenuSetup()
 			PlayerController->SetInputMode(InputModeData);
 			PlayerController->SetShowMouseCursor(true);
 		}
+	
 	}
 
 	if(UGameInstance* Instance = GetGameInstance())
@@ -61,9 +64,12 @@ void UOTSessionMenu::JoinSession(const FOTSessionSearchResult& session)
 	OTSessionsSubsystem->JoinSession(session);
 }
 
+
+
 void UOTSessionMenu::NativeDestruct()
 {
-	MenuTearDown();
+	//MenuTearDown();
+
 	Super::NativeDestruct();
 }
 
@@ -101,7 +107,7 @@ void UOTSessionMenu::OnJoinSession(bool bWasSuccessful, EOTJoinSessionResultType
 
 void UOTSessionMenu::MenuTearDown()
 {
-	RemoveFromParent();
+	//RemoveFromParent();
 	if(auto* World = GetWorld())
 	{
 		APlayerController* PlayerController = World->GetFirstPlayerController();
@@ -114,7 +120,5 @@ void UOTSessionMenu::MenuTearDown()
 		}
 	}
 
-	OTSessionsSubsystem->ToolboxOnCreateSessionComplete.RemoveDynamic(this, &ThisClass::OnCreateSession);
-	OTSessionsSubsystem->ToolboxOnFindSessionComplete.RemoveDynamic(this, &ThisClass::OnFindSession);
-	OTSessionsSubsystem->ToolboxOnJoinSessionComplete.RemoveDynamic(this, &ThisClass::OnJoinSession);
+	
 }

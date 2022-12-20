@@ -4,19 +4,34 @@
 #include "GameMode/KSLobbyGameMode.h"
 
 #include "GameFramework/GameStateBase.h"
+#include "GameState/KSLobbyGameState.h"
 
-void AKSLobbyGameMode::PostLogin(APlayerController* NewPlayer)
+AKSLobbyGameMode::AKSLobbyGameMode()
 {
-	Super::PostLogin(NewPlayer);
-	
-	int32 NumberOfPlayers = GameState.Get()->PlayerArray.Num();
-	if(NumberOfPlayers > 2)
+	GameStateClass = AKSLobbyGameState::StaticClass();
+}
+
+void AKSLobbyGameMode::BeginPlay()
+{
+	Super::BeginPlay();
+	GetGameState<AKSLobbyGameState>()->OnPlayerChangeState.AddDynamic(this,&AKSLobbyGameMode::StartGame);
+}
+
+void AKSLobbyGameMode::StartGame()
+{
+	const auto* gamestate = GetGameState<AKSLobbyGameState>();
+	if(gamestate->PlayerArray.Num() == gamestate->PlayerReady.Num())
 	{
-		auto* World = GetWorld();
-		if(World)
+		
+		if(auto* World = GetWorld())
 		{
 			bUseSeamlessTravel = true;
-			World->ServerTravel(FString("/Game/Klems/Levels/Maps/LVL_Map1?listen"),true);
+			World->ServerTravel(FString("/Game/BorderHunt/Levels/Arenas/LVL_Arena1?listen"));
+		}else
+		{
+			UE_LOG(LogTemp, Error, TEXT("Failed to get the wordl in KSLobbyGameMode::StartGame"));
 		}
 	}
 }
+
+

@@ -11,10 +11,16 @@
  * 
  */
 UCLASS()
-class KLEMS_API AKSLobbyGameMode : public AGameMode
+class KLEMS_API AKSLobbyGameMode : public AGameModeBase
 {
 public:
-	virtual void PostLogin(APlayerController* NewPlayer) override;
+	AKSLobbyGameMode();
+
+	virtual void BeginPlay() override;
+
 private:
+	UFUNCTION()
+	virtual void StartGame();
+	
 	GENERATED_BODY()
 };

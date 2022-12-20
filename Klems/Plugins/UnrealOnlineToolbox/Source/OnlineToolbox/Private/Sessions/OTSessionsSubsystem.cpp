@@ -53,16 +53,16 @@ void UOTSessionsSubsystem::CreateSession(int32 NumConnections, const FString& Ma
 	LastSessionSettings = MakeShareable(new FOnlineSessionSettings());
 	
 	//If we are using the NULL subsystem it is a LAN match. Otherwise it is an online match
-	LastSessionSettings->bIsLANMatch = IOnlineSubsystem::Get()->GetSubsystemName() == "NULL";
-	LastSessionSettings->bUseLobbiesIfAvailable = true;
+	LastSessionSettings->bIsLANMatch = true;
 	LastSessionSettings->NumPublicConnections = NumConnections;
-	LastSessionSettings->bShouldAdvertise = true;
-	LastSessionSettings->bAllowJoinInProgress = false;
+	LastSessionSettings->bUseLobbiesIfAvailable = true;
+	LastSessionSettings->bAllowJoinInProgress = true;
 	LastSessionSettings->bAllowJoinViaPresence = true;
 	LastSessionSettings->bShouldAdvertise = true;
+	LastSessionSettings->bUsesPresence = true;
 		
 	LastSessionSettings->Set(FName("IsPrivate"),bIsPrivate,EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
-	LastSessionSettings->Set(FName("MatchType"), MatchType, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
+	//LastSessionSettings->Set(FName("MatchType"), MatchType, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
 
 #if !UE_BUILD_SHIPPING
 	//Enforce a specific Build ID in not shipping so we can
@@ -94,7 +94,7 @@ void UOTSessionsSubsystem::FindSessions(int32 MaxSearchResults, const FString& M
 	LastSessionSearch = MakeShareable(new FOnlineSessionSearch());
 	LastSessionSearch->MaxSearchResults = MaxSearchResults;
 	LastSessionSearch->bIsLanQuery = IOnlineSubsystem::Get()->GetSubsystemName() == "NULL";
-	LastSessionSearch->QuerySettings.Set(SEARCH_PRESENCE, true, EOnlineComparisonOp::Equals);
+	//LastSessionSearch->QuerySettings.Set(SEARCH_PRESENCE, true, EOnlineComparisonOp::Equals);
 	LastSessionSearch->QuerySettings.Set(FName("MatchType"), MatchType, EOnlineComparisonOp::Equals);
 	
 	const ULocalPlayer* LocalPLayer = GetWorld()->GetFirstLocalPlayerFromController();

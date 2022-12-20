@@ -22,8 +22,6 @@ class ABILITYSYSTEM_API UASAttribute : public UObject
 	GENERATED_BODY()
 public:
 	virtual bool IsSupportedForNetworking() const override {return true;};
-
-	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	
 	UFUNCTION(BlueprintCallable, Category="Attribute")
 	FORCEINLINE float GetBaseValue() const { return BaseValue; }
@@ -67,10 +65,10 @@ private:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Attribute", meta=(AllowPrivateAccess=true))
 	FName Name;
 
-	UPROPERTY(Replicated, ReplicatedUsing= OnRep_BaseValue, EditAnywhere, Category="Attribute")
+	UPROPERTY(Replicated, ReplicatedUsing=OnRep_BaseValue, EditAnywhere, Category="Attribute")
 	float BaseValue = 0;
 	
-	UPROPERTY(Replicated, ReplicatedUsing= OnRep_CurrentValue, EditAnywhere, Category="Attribute")
+	UPROPERTY(Replicated, ReplicatedUsing=OnRep_CurrentValue, EditAnywhere, Category="Attribute")
 	float CurrentValue = 0;
 
 	UFUNCTION()

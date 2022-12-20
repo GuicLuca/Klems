@@ -101,6 +101,7 @@ void AKSCharacter::Shoot_Implementation()
 
 void AKSCharacter::Die_Implementation()
 {
+	GetWorldTimerManager().ClearTimer(MemberTimerHandle);
 }
 
 /**********************************************************************/
@@ -112,6 +113,8 @@ void AKSCharacter::SetInfectedMode()
 {
 	if(InfectionDensity >=1)
 	{
+		bIsInfected = true;
+		
 		for(auto tag : AbilitiesRemovedByInfection)
 		{
 			AbilityComponent->RemoveAbility(tag);

@@ -132,6 +132,9 @@ protected:
 	UPROPERTY(BlueprintReadWrite, Category="Pseudo")
 	FString pseudo;
 
+	UPROPERTY(BlueprintReadWrite)
+	bool bIsInfected = false;
+
 private:
 	FTimerHandle MemberTimerHandle;
 	

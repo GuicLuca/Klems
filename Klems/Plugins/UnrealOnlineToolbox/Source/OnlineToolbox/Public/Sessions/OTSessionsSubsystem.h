@@ -45,10 +45,20 @@ public:
 
 	/**
 	 * @brief 
-	 * @param MaxSearchResults 
+	 * @param MaxSearchResults
+	 * @param MatchType
 	 */
 	UFUNCTION(BlueprintCallable)
 	void FindSessions(int32 MaxSearchResults, const FString& MatchType);
+	/**
+	 * @brief 
+	 * @param MaxSearchResults
+	 * @param MatchType
+	 * @param MatchType
+	 */
+	/*
+	UFUNCTION(BlueprintCallable)
+	void FindPrivateSessions(int32 MaxSearchResults, const FString& MatchType, const FString& SessionId);*/
 
 	/**
 	 * @brief 

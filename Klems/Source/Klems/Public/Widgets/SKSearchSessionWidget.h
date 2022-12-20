@@ -17,5 +17,5 @@ class KLEMS_API USKSearchSessionWidget : public UUserWidget
 	GENERATED_BODY()
 
 	UFUNCTION(BlueprintCallable)
-	void WorkOnSession(const FOTSessionSearchResult& session,int32 & ms,int32 & CurrentPlayer, int32 & MaxPlayers, FString & SessionId);
+	void WorkOnSession(const FOTSessionSearchResult& session,int32 & ms,int32 & CurrentPlayer, int32 & MaxPlayers, FString & SessionName, FString & SessionId, bool & bIsPrivate);
 };

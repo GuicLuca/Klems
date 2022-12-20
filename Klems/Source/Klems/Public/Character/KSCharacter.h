@@ -82,8 +82,10 @@ public:
 	UFUNCTION()
 	void OnRep_HealthChanged();
 
+	/*
 	UFUNCTION(BlueprintCallable, Server, Reliable)
 	void DecrementHealth(float amount);
+	*/
 	
 	UFUNCTION(BlueprintNativeEvent)
 	void OnAmmoChanged(int32 OldValue, int32 NewValue);
@@ -92,6 +94,9 @@ protected:
 	
 	UFUNCTION()
 	void OnSpeedChanged(float OldValue, float NewValue);
+
+	UFUNCTION()
+	void OnHealthChanged(float OldValue, float NewValue);
 	
 	UFUNCTION()
 	void OnInfectChanged(float OldValue, float NewValue);

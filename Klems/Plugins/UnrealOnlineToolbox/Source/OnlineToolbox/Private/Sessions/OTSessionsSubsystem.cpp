@@ -61,8 +61,8 @@ void UOTSessionsSubsystem::CreateSession(int32 NumConnections, const FString& Ma
 	LastSessionSettings->bShouldAdvertise = true;
 	LastSessionSettings->bUsesPresence = true;
 		
-	LastSessionSettings->Set(FName("IsPrivate"),bIsPrivate,EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
-	//LastSessionSettings->Set(FName("MatchType"), MatchType, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
+	//LastSessionSettings->Set(FName("IsPrivate"),bIsPrivate,EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
+	LastSessionSettings->Set(FName("MatchType"), MatchType, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
 
 #if !UE_BUILD_SHIPPING
 	//Enforce a specific Build ID in not shipping so we can

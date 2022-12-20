@@ -58,6 +58,56 @@ void AKSCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLife
 	DOREPLIFETIME(AKSCharacter,Camera);
 }
 
+void AKSCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if(!HasAuthority()) return;;
+	
+	checkf(Attributes, TEXT("Character component ill formed ! BP corruption?"));
+	
+	auto* SpeedAttribute = Attributes->GetAttribute(TAG_Attribute_Speed);
+	if(!ensureAlwaysMsgf(SpeedAttribute, TEXT("No speed attribute, your character is ill formated !"))) return;
+
+	SpeedAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnSpeedChanged);
+	
+	auto* HealthAttribute = Attributes->GetAttribute(TAG_Attribute_Health);
+	if(!ensureAlwaysMsgf(HealthAttribute, TEXT("No health attribute, your character is ill formated !"))) return;
+
+	HealthAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnHealthChanged);
+	
+	auto* InfectAttribute = Attributes->GetAttribute(TAG_Attribute_Infection);
+	if(!ensureAlwaysMsgf(InfectAttribute, TEXT("No infect attribute, your character is ill formated !"))) return;
+
+	InfectAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnInfectChanged);
+	
+	startInfection();
+	
+}
+
+/***************************NATIVE EVENTS*****************************/
+
+void AKSCharacter::TakeHit_Implementation()
+{
+}
+
+void AKSCharacter::Reload_Implementation()
+{
+}
+
+void AKSCharacter::Shoot_Implementation()
+{
+}
+
+void AKSCharacter::Die_Implementation()
+{
+}
+
+/**********************************************************************/
+
+
+/****************************INFECTION*********************************/
+
 void AKSCharacter::SetInfectedMode()
 {
 	if(InfectionDensity >=1)
@@ -76,9 +126,9 @@ void AKSCharacter::SetInfectedMode()
 	}
 }
 
-
 void AKSCharacter::addInfection()
 {
+	if(!HasAuthority()) return;
 	TArray<AActor*> OverlappedActors;
 	GetCapsuleComponent()->GetOverlappingActors(OverlappedActors);
 
@@ -88,31 +138,18 @@ void AKSCharacter::addInfection()
 		if(tile)
 		{
 			const float infectionDensity = tile->InfectionDensity;
-			this->InfectionDensity += infectionDensity;
-			SetInfectedMode();
+			auto* attribute = Attributes->GetAttribute(TAG_Attribute_Infection);
+			attribute->SetCurrentValue(attribute->GetCurrentValue()+infectionDensity);
+			//this->InfectionDensity += infectionDensity;
+			//SetInfectedMode();
 			break;
 		}
 	}
 }
 
-void AKSCharacter::TakeHit_Implementation()
-{
-}
-
-void AKSCharacter::Reload_Implementation()
-{
-}
-
-void AKSCharacter::Shoot_Implementation()
-{
-}
-
-void AKSCharacter::Die_Implementation()
-{
-}
-
 void AKSCharacter::startInfection_Implementation()
 {
+	if(!HasAuthority()) return;
 	GetWorldTimerManager().SetTimer(MemberTimerHandle, this, &AKSCharacter::addInfection, 1.0f, true);
 }
 
@@ -123,32 +160,66 @@ void AKSCharacter::stopInfection_Implementation()
 	CombatComponent->Ammo = 1;
 }
 
+//called by attributes (server)
 void AKSCharacter::OnInfectChanged(float OldValue, float NewValue)
 {
-	if(HasAuthority())
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Server Infect ValueChanged"));
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Client Infect ValueChanged"));
-	}
-		
-	this->InfectionDensity = NewValue;
+	if(!HasAuthority()) return;
+	UE_LOG(LogTemp,Verbose, TEXT("HEALTH delagate called"));
+	InfectionDensity = NewValue;
 	SetInfectedMode();
 }
 
-
-void AKSCharacter::OnAmmoChanged_Implementation(int32 OldValue, int32 NewValue)
-{
-
-}
-
+//called by client
 void AKSCharacter::OnRep_InfectionDensityChanged()
 {
 	SetInfectedMode();
 }
 
+/**********************************************************************/
+
+/*******************************AMMO***********************************/
+
+//called by client
+void AKSCharacter::OnAmmoChanged_Implementation(int32 OldValue, int32 NewValue)
+{
+
+}
+
+/**********************************************************************/
+
+//called by attribute (server)
+void AKSCharacter::OnSpeedChanged(float OldValue, float NewValue)
+{
+	if(!HasAuthority()) return;
+	UE_LOG(LogTemp,Verbose, TEXT("SPEED delagate called"));
+	auto* Mouvement = GetCharacterMovement();
+	if(!ensureAlwaysMsgf(Mouvement, TEXT("No mouvement component. Character ill formed!"))) return;
+	Mouvement->MaxWalkSpeed = NewValue;
+}
+
+/*****************************************HEALTH*******************************************/
+
+//called by attribute (server)
+void AKSCharacter::OnHealthChanged(float OldValue, float NewValue)
+{
+	if(!HasAuthority()) return;
+	UE_LOG(LogTemp,Verbose, TEXT("HEALTH delagate called"));
+	Health= NewValue;
+	if(Health <= 0)
+		Die();
+}
+
+/*
+//called by server
+void AKSCharacter::DecrementHealth_Implementation(float amount)
+{
+	Health -= amount;
+	if(Health <= 0)
+		Die();
+}
+*/
+
+//called by client
 void AKSCharacter::OnRep_HealthChanged()
 {
 	TakeHit();
@@ -156,49 +227,9 @@ void AKSCharacter::OnRep_HealthChanged()
 		Die();
 }
 
-void AKSCharacter::DecrementHealth_Implementation(float amount)
-{
-	Health -= amount;
-	if(Health <= 0)
-		Die();
-}
+/******************************************************************************************/
 
-void AKSCharacter::OnSpeedChanged(float OldValue, float NewValue)
-{
-	UE_LOG(LogTemp,Verbose, TEXT("SPEED delagate called"));
-	auto* Mouvement = GetCharacterMovement();
-	if(!ensureAlwaysMsgf(Mouvement, TEXT("No mouvement component. Character ill formed!"))) return;
-	Mouvement->MaxWalkSpeed = NewValue;
-}
-
-void AKSCharacter::BeginPlay()
-{
-	Super::BeginPlay();
-	
-	checkf(Attributes, TEXT("Character component ill formed ! BP corruption?"));
-	
-	auto* SpeedAttribute = Attributes->GetAttribute(TAG_Attribute_Speed);
-	if(!ensureAlwaysMsgf(SpeedAttribute, TEXT("No speed attribute, your character is ill formated !"))) return;
-
-	SpeedAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnSpeedChanged);
-
-	/*
-	auto* HealthAttribute = Attributes->GetAttribute(TAG_Attribute_Health);
-	if(!ensureAlwaysMsgf(HealthAttribute, TEXT("No health attribute, your character is ill formated !"))) return;
-
-	HealthAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnHealthChanged);
-
-	
-	auto* InfectAttribute = Attributes->GetAttribute(TAG_Attribute_Infection);
-	if(!ensureAlwaysMsgf(InfectAttribute, TEXT("No infect attribute, your character is ill formated !"))) return;
-
-	InfectAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnInfectChanged);
-
-	*/
-	
-	startInfection();
-	
-}
+/*****************************************INPUTS*******************************************/
 
 void AKSCharacter::InputMove(const FInputActionValue& InputActionValue)
 {
@@ -267,8 +298,7 @@ void AKSCharacter::InputShoot(const FInputActionValue& InputActionValue)
 		AbilityComponent->StopAbility(TAG_Ability_Punch,this);
 		*/
 	}
-
-
+	
 	
 }
 
@@ -324,3 +354,5 @@ void AKSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	TaggedInputComponent->BindActionByTag(InputConfig, TAG_Input_Punch, ETriggerEvent::Triggered, this, &AKSCharacter::InputPunch);
 	//TaggedInputComponent->BindActionByTag(InputConfig, TAG_Input_TabUI, ETriggerEvent::Triggered, this, &AKSCharacter::InputTab);
 }
+
+/******************************************************************************************/

@@ -23,11 +23,14 @@ public:
 	
 	FKSPLayerChangeStateDelegate OnPlayerChangeState;
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadWrite, ReplicatedUsing=DebugLog)
 	TArray<APlayerController*> PlayerReady;
 
+	UFUNCTION()
+	void DebugLog() const;
+
 	UFUNCTION(BlueprintCallable, Category="Player Status")
-	int32 GetAmoutOfReadyPLayer() const;
+	int32 GetAmountOfReadyPLayer() const;
 
 	/** Set the player status, if all player of the session are ready, the game will start */
 	UFUNCTION(BlueprintCallable, Category="Player Status")

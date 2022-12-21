@@ -24,11 +24,13 @@ void AKSLobbyGameMode::StartGame()
 	const auto* gamestate = GetGameState<AKSLobbyGameState>();
 	if(gamestate->PlayerArray.Num() == gamestate->PlayerReady.Num())
 	{
-		
+		// Remove UI of LobbyPawn
+
+		// Change to arena lvl
 		if(auto* World = GetWorld())
 		{
 			bUseSeamlessTravel = true;
-			World->ServerTravel(FString("/Game/BorderHunt/Levels/Arenas/LVL_Arena1?listen"));
+			World->ServerTravel(FString("/Game/Klems/Levels/Maps/LVL_Map1"));
 		}else
 		{
 			UE_LOG(LogTemp, Error, TEXT("Failed to get the wordl in KSLobbyGameMode::StartGame"));

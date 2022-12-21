@@ -350,7 +350,7 @@ void AKSCharacter::InputShoot(const FInputActionValue& InputActionValue)
 {
 	if(InputActionValue.Get<bool>())
 	{
-		if(CombatComponent->Ammo > 0 && GetVelocity().Length() < 850)
+		if(CombatComponent->Ammo > 0 && !bRunning)
 			Shoot();
 		AbilityComponent->StartAbility(TAG_Ability_Shoot,this);
 		AbilityComponent->StartAbility(TAG_Ability_Punch,this);

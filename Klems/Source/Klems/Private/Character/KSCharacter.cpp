@@ -55,6 +55,8 @@ void AKSCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLife
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(AKSCharacter,InfectionDensity);
 	DOREPLIFETIME(AKSCharacter,Health);
+	DOREPLIFETIME(AKSCharacter,HitCount);
+	DOREPLIFETIME(AKSCharacter,HeadShotCount);
 	DOREPLIFETIME(AKSCharacter,Camera);
 }
 
@@ -80,6 +82,16 @@ void AKSCharacter::BeginPlay()
 	if(!ensureAlwaysMsgf(InfectAttribute, TEXT("No infect attribute, your character is ill formated !"))) return;
 
 	InfectAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnInfectChanged);
+
+	auto* HitCountAttribute = Attributes->GetAttribute(TAG_Attribute_HitCount);
+	if(!ensureAlwaysMsgf(InfectAttribute, TEXT("No HitCount attribute, your character is ill formated !"))) return;
+
+	HitCountAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnHitCountChanged);
+
+	auto* HeadShotCountAttribute = Attributes->GetAttribute(TAG_Attribute_HeadShotCount);
+	if(!ensureAlwaysMsgf(InfectAttribute, TEXT("No HeadShotCount attribute, your character is ill formated !"))) return;
+
+	HeadShotCountAttribute->CurrentValueChanged.AddDynamic(this, &AKSCharacter::OnHeadShotCountChanged);
 	
 	startInfection();
 	
@@ -155,6 +167,14 @@ void AKSCharacter::addInfection()
 			break;
 		}
 	}
+}
+
+void AKSCharacter::DisplayHitMarker_Implementation()
+{
+}
+
+void AKSCharacter::DisplayHeadShot_Implementation()
+{
 }
 
 void AKSCharacter::startInfection_Implementation()
@@ -237,6 +257,35 @@ void AKSCharacter::OnRep_HealthChanged()
 		Die();
 }
 
+
+/******************************************************************************************/
+
+/*****************************************HITS*********************************************/
+
+void AKSCharacter::OnHitCountChanged(float OldValue, float NewValue)
+{
+	if(!HasAuthority()) return;
+	UE_LOG(LogTemp,Verbose, TEXT("HIT COUNT delagate called"));
+	HitCount = NewValue;
+}
+
+void AKSCharacter::OnHeadShotCountChanged(float OldValue, float NewValue)
+{
+	if(!HasAuthority()) return;
+	UE_LOG(LogTemp,Verbose, TEXT("HEAD SHOT COUNT delagate called"));
+	HeadShotCount = NewValue;
+}
+
+void AKSCharacter::OnRep_HitCountChanged()
+{
+	DisplayHitMarker();
+}
+
+void AKSCharacter::OnRep_HeadShotCountChanged()
+{
+	DisplayHeadShot();
+}
+
 /******************************************************************************************/
 
 /*****************************************INPUTS*******************************************/
@@ -283,8 +332,12 @@ void AKSCharacter::InputRun(const FInputActionValue& InputActionValue)
 {
 	if(InputActionValue.Get<bool>())
 	{
-		StartRun();
-		AbilityComponent->StartAbility(TAG_Ability_Run,this);
+		if(GetVelocity().Length() > 1)
+		{
+			StartRun();
+			AbilityComponent->StartAbility(TAG_Ability_Run,this);
+		}
+		
 	}
 	else
 	{

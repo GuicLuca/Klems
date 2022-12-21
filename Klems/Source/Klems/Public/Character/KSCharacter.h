@@ -53,6 +53,12 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent)
 	void TakeHit();
+
+	UFUNCTION(BlueprintNativeEvent)
+	void DisplayHitMarker();
+
+	UFUNCTION(BlueprintNativeEvent)
+	void DisplayHeadShot();
 	
 	UPROPERTY(VisibleAnywhere,BlueprintReadWrite, Category = "Ability")
 	TObjectPtr<UASAbilityComponent> AbilityComponent;
@@ -76,11 +82,26 @@ public:
 	UPROPERTY(BlueprintReadWrite, Replicated, ReplicatedUsing=OnRep_HealthChanged);
 	float Health = 100;
 
+	UPROPERTY(BlueprintReadWrite, Replicated, ReplicatedUsing=OnRep_HitCountChanged);
+	float HitCount = 0;
+
+	UPROPERTY(BlueprintReadWrite, Replicated, ReplicatedUsing=OnRep_HeadShotCountChanged);
+	float HeadShotCount = 0;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bRunning = false;
+
 	UFUNCTION()
 	void OnRep_InfectionDensityChanged();
 
 	UFUNCTION()
 	void OnRep_HealthChanged();
+
+	UFUNCTION()
+	void OnRep_HitCountChanged();
+
+	UFUNCTION()
+	void OnRep_HeadShotCountChanged();
 
 	/*
 	UFUNCTION(BlueprintCallable, Server, Reliable)
@@ -100,6 +121,12 @@ protected:
 	
 	UFUNCTION()
 	void OnInfectChanged(float OldValue, float NewValue);
+
+	UFUNCTION()
+	void OnHitCountChanged(float OldValue, float NewValue);
+
+	UFUNCTION()
+	void OnHeadShotCountChanged(float OldValue, float NewValue);
 	
 	virtual void BeginPlay() override;
 

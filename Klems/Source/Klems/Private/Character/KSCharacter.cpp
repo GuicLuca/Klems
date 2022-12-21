@@ -101,7 +101,14 @@ void AKSCharacter::Shoot_Implementation()
 
 void AKSCharacter::Die_Implementation()
 {
-	GetWorldTimerManager().ClearTimer(MemberTimerHandle);
+}
+
+void AKSCharacter::StartRun_Implementation()
+{
+}
+
+void AKSCharacter::StopRun_Implementation()
+{
 }
 
 /**********************************************************************/
@@ -276,10 +283,12 @@ void AKSCharacter::InputRun(const FInputActionValue& InputActionValue)
 {
 	if(InputActionValue.Get<bool>())
 	{
+		StartRun();
 		AbilityComponent->StartAbility(TAG_Ability_Run,this);
 	}
 	else
 	{
+		StopRun();
 		AbilityComponent->StopAbility(TAG_Ability_Run,this);
 	}
 }
@@ -288,7 +297,7 @@ void AKSCharacter::InputShoot(const FInputActionValue& InputActionValue)
 {
 	if(InputActionValue.Get<bool>())
 	{
-		if(CombatComponent->Ammo > 0)
+		if(CombatComponent->Ammo > 0 && GetVelocity().Length() < 850)
 			Shoot();
 		AbilityComponent->StartAbility(TAG_Ability_Shoot,this);
 		AbilityComponent->StartAbility(TAG_Ability_Punch,this);
@@ -309,7 +318,8 @@ void AKSCharacter::InputReload(const FInputActionValue& InputActionValue)
 {
 	if(InputActionValue.Get<bool>())
 	{
-		Reload();
+		if(GetVelocity().Length() < 850)
+			Reload();
 		AbilityComponent->StartAbility(TAG_Ability_Reload,this);
 		FTimerHandle TimerHandle;
 		FTimerDelegate TimerDelegate;
@@ -331,13 +341,14 @@ void AKSCharacter::InputPunch(const FInputActionValue& InputActionValue)
 	if(InputActionValue.Get<bool>())
 	{
 		AbilityComponent->StartAbility(TAG_Ability_Punch,this);
-		
 	}
 	else
 	{
 		AbilityComponent->StopAbility(TAG_Ability_Punch,this);
 	}
 }
+
+
 
 
 void AKSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

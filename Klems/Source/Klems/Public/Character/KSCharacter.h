@@ -118,6 +118,12 @@ protected:
 	void InputReload(const FInputActionValue& InputActionValue);
 
 	void InputPunch(const FInputActionValue& InputActionValue);
+
+	UFUNCTION(BlueprintNativeEvent)
+	void StartRun();
+
+	UFUNCTION(BlueprintNativeEvent)
+	void StopRun();
 	
 
 	UPROPERTY(VisibleAnywhere, Category="Camera", Replicated)

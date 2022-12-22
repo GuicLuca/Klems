@@ -40,13 +40,15 @@ void UOTSessionMenu::MenuSetup()
 void UOTSessionMenu::HostSession(const FString& Lobby,
 	int32 NumPublicConnection /*= 4*/,
 	const FString& MatchType /*= "FreeForAll"*/,
-	const bool bIsPrivate /*= false*/)
+	const FString& SessionName,
+	const bool bIsPrivate /*= false*/,
+	const FString& Password)
 {
 	if(!ensureMsgf(OTSessionsSubsystem != nullptr,
 		TEXT("Multiplayer Session Subsystem is not set. Did you call MenuSetup?"))) return;
 
 	LobbyMap = Lobby;
-	OTSessionsSubsystem->CreateSession(NumPublicConnection, MatchType,bIsPrivate);
+	OTSessionsSubsystem->CreateSession(NumPublicConnection, MatchType,SessionName,bIsPrivate,Password);
 }
 
 void UOTSessionMenu::FindSession(int32 MaxSessionNumber, const FString& MatchType)
@@ -121,5 +123,18 @@ void UOTSessionMenu::MenuTearDown()
 		}
 	}
 
+	
+}
+void UOTSessionMenu::WorkOnSession(const FOTSessionSearchResult& session,int32 & ms,int32 & CurrentPlayer, int32 & MaxPlayers, FString & SessionName, FString & SessionId, bool & bIsPrivate, FString & Password)
+{
+	ms = session.PingInMs;
+	CurrentPlayer = session.Session.SessionSettings.NumPublicConnections - session.Session.NumOpenPublicConnections;
+	MaxPlayers = session.Session.SessionSettings.NumPublicConnections;
+	SessionId = session.Session.GetSessionIdStr();
+	session.Session.SessionSettings.Get(FName("IsPrivate"),bIsPrivate);
+	session.Session.SessionSettings.Get(FName("SessionName"),SessionName);
+	session.Session.SessionSettings.Get(FName("Password"),Password);
+
+	
 	
 }

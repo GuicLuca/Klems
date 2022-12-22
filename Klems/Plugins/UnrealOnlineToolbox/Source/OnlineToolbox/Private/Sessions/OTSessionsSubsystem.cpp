@@ -30,7 +30,7 @@ void UOTSessionsSubsystem::Deinitialize()
 	Super::Deinitialize();
 }
 
-void UOTSessionsSubsystem::CreateSession(int32 NumConnections, const FString& MatchType, const bool bIsPrivate)
+void UOTSessionsSubsystem::CreateSession(int32 NumConnections, const FString& MatchType, const FString& SessionName,const bool bIsPrivate, const FString & Password)
 {
 	if(!ensureMsgf(SessionInterface.IsValid(), TEXT("Unable to get the Session Interface"))) return;
 
@@ -61,7 +61,11 @@ void UOTSessionsSubsystem::CreateSession(int32 NumConnections, const FString& Ma
 	LastSessionSettings->bShouldAdvertise = true;
 	LastSessionSettings->bUsesPresence = true;
 		
-	//LastSessionSettings->Set(FName("IsPrivate"),bIsPrivate,EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
+	LastSessionSettings->Set(FName("IsPrivate"),bIsPrivate,EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
+	LastSessionSettings->Set(FName("Password"),Password,EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
+	LastSessionSettings->Set(FName("SessionName"),SessionName,EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
+
+
 	LastSessionSettings->Set(FName("MatchType"), MatchType, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
 
 #if !UE_BUILD_SHIPPING
@@ -284,7 +288,7 @@ void UOTSessionsSubsystem::OnDestroySessionComplete(FName SessionName, bool bWas
 
 	if(!bWasSuccessful || !bCreateSessionOnDestroy) return;
 
-	CreateSession(LastNumPublicConnections, LastMatchType,false);
+	//CreateSession(LastNumPublicConnections, LastMatchType,false); No sens in our context
 }
 
 void UOTSessionsSubsystem::OnStartSessionComplete(FName SessionName, bool bWasSuccessful)

@@ -41,7 +41,7 @@ public:
 	 * @param MatchType 
 	 */
 	UFUNCTION(BlueprintCallable)
-	void CreateSession(int32 NumConnections, const FString& MatchType, const bool bIsPrivate);
+	void CreateSession(int32 NumConnections, const FString& MatchType, const FString& SessionName,const bool bIsPrivate = false, const FString & Password = "");
 
 	/**
 	 * @brief 

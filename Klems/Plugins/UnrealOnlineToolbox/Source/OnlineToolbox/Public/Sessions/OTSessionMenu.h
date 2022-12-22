@@ -26,7 +26,7 @@ public:
 
 protected:
 	UFUNCTION(BlueprintCallable)
-	void HostSession(const FString& Lobby, int32 NumPublicConnection = 4, const FString& MatchType = "FreeForAll", const bool bIsPrivate = false);
+	void HostSession(const FString& Lobby, int32 NumPublicConnection = 4, const FString& MatchType = "FreeForAll",const FString& SessionName = "", const bool bIsPrivate = false,const FString& Password = "");
 
 	UFUNCTION(BlueprintCallable)
 	void FindSession(int32 MaxSessionNumber = 10, const FString& MatchType = "FreeForAll");
@@ -63,6 +63,8 @@ private:
 	UOTSessionsSubsystem* OTSessionsSubsystem;
 
 	void MenuTearDown();
+	void WorkOnSession(const FOTSessionSearchResult& session, int32& ms, int32& CurrentPlayer, int32& MaxPlayers,
+	                   FString& SessionName, FString& SessionId, bool& bIsPrivate, FString& Password);
 
 	FString LobbyMap;
 };

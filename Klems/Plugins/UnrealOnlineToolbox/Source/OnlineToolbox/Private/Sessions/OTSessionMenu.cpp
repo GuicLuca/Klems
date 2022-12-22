@@ -5,6 +5,7 @@
 
 #include "Sessions/OTSessionsSubsystem.h"
 
+
 void UOTSessionMenu::MenuSetup()
 {
 	AddToViewport();
@@ -13,6 +14,7 @@ void UOTSessionMenu::MenuSetup()
 
 	if(UWorld* World = GetWorld())
 	{
+	
 		if(APlayerController* PlayerController = World->GetFirstPlayerController())
 		{
 			FInputModeUIOnly InputModeData;
@@ -21,6 +23,7 @@ void UOTSessionMenu::MenuSetup()
 			PlayerController->SetInputMode(InputModeData);
 			PlayerController->SetShowMouseCursor(true);
 		}
+	
 	}
 
 	if(UGameInstance* Instance = GetGameInstance())
@@ -36,13 +39,14 @@ void UOTSessionMenu::MenuSetup()
 
 void UOTSessionMenu::HostSession(const FString& Lobby,
 	int32 NumPublicConnection /*= 4*/,
-	const FString& MatchType /*= "FreeForAll"*/)
+	const FString& MatchType /*= "FreeForAll"*/,
+	const bool bIsPrivate /*= false*/)
 {
 	if(!ensureMsgf(OTSessionsSubsystem != nullptr,
 		TEXT("Multiplayer Session Subsystem is not set. Did you call MenuSetup?"))) return;
 
 	LobbyMap = Lobby;
-	OTSessionsSubsystem->CreateSession(NumPublicConnection, MatchType);
+	OTSessionsSubsystem->CreateSession(NumPublicConnection, MatchType,bIsPrivate);
 }
 
 void UOTSessionMenu::FindSession(int32 MaxSessionNumber, const FString& MatchType)
@@ -61,9 +65,12 @@ void UOTSessionMenu::JoinSession(const FOTSessionSearchResult& session)
 	OTSessionsSubsystem->JoinSession(session);
 }
 
+
+
 void UOTSessionMenu::NativeDestruct()
 {
-	MenuTearDown();
+	//MenuTearDown();
+
 	Super::NativeDestruct();
 }
 
@@ -101,7 +108,7 @@ void UOTSessionMenu::OnJoinSession(bool bWasSuccessful, EOTJoinSessionResultType
 
 void UOTSessionMenu::MenuTearDown()
 {
-	RemoveFromParent();
+	//RemoveFromParent();
 	if(auto* World = GetWorld())
 	{
 		APlayerController* PlayerController = World->GetFirstPlayerController();
@@ -114,7 +121,5 @@ void UOTSessionMenu::MenuTearDown()
 		}
 	}
 
-	OTSessionsSubsystem->ToolboxOnCreateSessionComplete.RemoveDynamic(this, &ThisClass::OnCreateSession);
-	OTSessionsSubsystem->ToolboxOnFindSessionComplete.RemoveDynamic(this, &ThisClass::OnFindSession);
-	OTSessionsSubsystem->ToolboxOnJoinSessionComplete.RemoveDynamic(this, &ThisClass::OnJoinSession);
+	
 }

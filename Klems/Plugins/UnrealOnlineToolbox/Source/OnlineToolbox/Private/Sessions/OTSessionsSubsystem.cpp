@@ -30,7 +30,7 @@ void UOTSessionsSubsystem::Deinitialize()
 	Super::Deinitialize();
 }
 
-void UOTSessionsSubsystem::CreateSession(int32 NumPublicConnections, const FString& MatchType)
+void UOTSessionsSubsystem::CreateSession(int32 NumConnections, const FString& MatchType, const bool bIsPrivate)
 {
 	if(!ensureMsgf(SessionInterface.IsValid(), TEXT("Unable to get the Session Interface"))) return;
 
@@ -39,7 +39,7 @@ void UOTSessionsSubsystem::CreateSession(int32 NumPublicConnections, const FStri
 	if(ExistingSession != nullptr)
 	{
 		bCreateSessionOnDestroy = true;
-		LastNumPublicConnections = NumPublicConnections;
+		LastNumPublicConnections = NumConnections;
 		LastMatchType = MatchType;
 		DestroySession();
 		return;
@@ -53,13 +53,15 @@ void UOTSessionsSubsystem::CreateSession(int32 NumPublicConnections, const FStri
 	LastSessionSettings = MakeShareable(new FOnlineSessionSettings());
 	
 	//If we are using the NULL subsystem it is a LAN match. Otherwise it is an online match
-	LastSessionSettings->bIsLANMatch = IOnlineSubsystem::Get()->GetSubsystemName() == "NULL";
-	LastSessionSettings->NumPublicConnections = NumPublicConnections;
+	LastSessionSettings->bIsLANMatch = true;
+	LastSessionSettings->NumPublicConnections = NumConnections;
 	LastSessionSettings->bUseLobbiesIfAvailable = true;
 	LastSessionSettings->bAllowJoinInProgress = true;
 	LastSessionSettings->bAllowJoinViaPresence = true;
 	LastSessionSettings->bShouldAdvertise = true;
 	LastSessionSettings->bUsesPresence = true;
+		
+	//LastSessionSettings->Set(FName("IsPrivate"),bIsPrivate,EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
 	LastSessionSettings->Set(FName("MatchType"), MatchType, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
 
 #if !UE_BUILD_SHIPPING
@@ -92,7 +94,7 @@ void UOTSessionsSubsystem::FindSessions(int32 MaxSearchResults, const FString& M
 	LastSessionSearch = MakeShareable(new FOnlineSessionSearch());
 	LastSessionSearch->MaxSearchResults = MaxSearchResults;
 	LastSessionSearch->bIsLanQuery = IOnlineSubsystem::Get()->GetSubsystemName() == "NULL";
-	LastSessionSearch->QuerySettings.Set(SEARCH_PRESENCE, true, EOnlineComparisonOp::Equals);
+	//LastSessionSearch->QuerySettings.Set(SEARCH_PRESENCE, true, EOnlineComparisonOp::Equals);
 	LastSessionSearch->QuerySettings.Set(FName("MatchType"), MatchType, EOnlineComparisonOp::Equals);
 	
 	const ULocalPlayer* LocalPLayer = GetWorld()->GetFirstLocalPlayerFromController();
@@ -104,7 +106,32 @@ void UOTSessionsSubsystem::FindSessions(int32 MaxSearchResults, const FString& M
 		ToolboxOnFindSessionComplete.Broadcast(Results, false);
 	}
 }
+/*
+void UOTSessionsSubsystem::FindPrivateSessions(int32 MaxSearchResults, const FString& MatchType,
+	const FString& SessionId)
+{
+	if(!ensureMsgf(SessionInterface.IsValid(), TEXT("Unable to get the Session Interface"))) return;
 
+	//Register the delegate for when the find session complete and store its handle for later removal
+	FindSessionsCompleteDelegateeHandle = SessionInterface->AddOnFindSessionsCompleteDelegate_Handle(FindSessionsCompleteDelegate);
+	
+	LastSessionSearch = MakeShareable(new FOnlineSessionSearch());
+	LastSessionSearch->MaxSearchResults = MaxSearchResults;
+	LastSessionSearch->bIsLanQuery = IOnlineSubsystem::Get()->GetSubsystemName() == "NULL";
+	LastSessionSearch->QuerySettings.Set(SEARCH_PRESENCE, true, EOnlineComparisonOp::Equals);
+	LastSessionSearch->QuerySettings.Set(FName("MatchType"), MatchType, EOnlineComparisonOp::Equals);
+
+	
+	const ULocalPlayer* LocalPLayer = GetWorld()->GetFirstLocalPlayerFromController();
+	const bool success = SessionInterface->FindSessions(*LocalPLayer->GetPreferredUniqueNetId(), LastSessionSearch.ToSharedRef());
+	if(!success)
+	{
+		SessionInterface->ClearOnFindSessionsCompleteDelegate_Handle(FindSessionsCompleteDelegateeHandle);
+		TArray<FOTSessionSearchResult> Results;
+		ToolboxOnFindSessionComplete.Broadcast(Results, false);
+	}
+}
+*/
 void UOTSessionsSubsystem::JoinSession(const FOTSessionSearchResult& SessionResult)
 {
 	if(!ensureMsgf(SessionInterface.IsValid(), TEXT("Unable to get the Session Interface"))) return;
@@ -238,6 +265,7 @@ void UOTSessionsSubsystem::OnJoinSessionComplete(FName SessionName, EOnJoinSessi
 
 	//Get the session address to make a client travel
 	FString Address;
+	
 	SessionInterface->GetResolvedConnectString(NAME_GameSession, Address);
 
 	//Fire our own delegate
@@ -256,7 +284,7 @@ void UOTSessionsSubsystem::OnDestroySessionComplete(FName SessionName, bool bWas
 
 	if(!bWasSuccessful || !bCreateSessionOnDestroy) return;
 
-	CreateSession(LastNumPublicConnections, LastMatchType);
+	CreateSession(LastNumPublicConnections, LastMatchType,false);
 }
 
 void UOTSessionsSubsystem::OnStartSessionComplete(FName SessionName, bool bWasSuccessful)

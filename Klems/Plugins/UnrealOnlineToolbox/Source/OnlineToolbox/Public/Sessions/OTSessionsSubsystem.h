@@ -37,18 +37,28 @@ public:
 	
 	/**
 	 * @brief 
-	 * @param NumPublicConnections 
+	 * @param NumConnections 
 	 * @param MatchType 
 	 */
 	UFUNCTION(BlueprintCallable)
-	void CreateSession(int32 NumPublicConnections, const FString& MatchType);
+	void CreateSession(int32 NumConnections, const FString& MatchType, const bool bIsPrivate);
 
 	/**
 	 * @brief 
-	 * @param MaxSearchResults 
+	 * @param MaxSearchResults
+	 * @param MatchType
 	 */
 	UFUNCTION(BlueprintCallable)
 	void FindSessions(int32 MaxSearchResults, const FString& MatchType);
+	/**
+	 * @brief 
+	 * @param MaxSearchResults
+	 * @param MatchType
+	 * @param MatchType
+	 */
+	/*
+	UFUNCTION(BlueprintCallable)
+	void FindPrivateSessions(int32 MaxSearchResults, const FString& MatchType, const FString& SessionId);*/
 
 	/**
 	 * @brief 

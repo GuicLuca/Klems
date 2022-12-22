@@ -26,7 +26,7 @@ public:
 
 protected:
 	UFUNCTION(BlueprintCallable)
-	void HostSession(const FString& Lobby, int32 NumPublicConnection = 4, const FString& MatchType = "FreeForAll");
+	void HostSession(const FString& Lobby, int32 NumPublicConnection = 4, const FString& MatchType = "FreeForAll", const bool bIsPrivate = false);
 
 	UFUNCTION(BlueprintCallable)
 	void FindSession(int32 MaxSessionNumber = 10, const FString& MatchType = "FreeForAll");
@@ -34,6 +34,8 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void JoinSession(const FOTSessionSearchResult& session);
 
+	
+	
 	virtual void NativeDestruct() override;
 	
 	// Callbacks for the toolbox session subsystem

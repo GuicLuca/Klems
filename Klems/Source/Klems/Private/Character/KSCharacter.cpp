@@ -130,7 +130,7 @@ void AKSCharacter::StopRun_Implementation()
 
 void AKSCharacter::SetInfectedMode()
 {
-	if(InfectionDensity >=1)
+	if(InfectionDensity >=1 && !bIsInfected)
 	{
 		bIsInfected = true;
 		
@@ -307,8 +307,8 @@ void AKSCharacter::InputMove(const FInputActionValue& InputActionValue)
 void AKSCharacter::InputLook(const FInputActionValue& InputActionValue)
 {
 	const auto LookVector = InputActionValue.Get<FVector2d>();
-	AddControllerYawInput(LookVector.X);
-	AddControllerPitchInput(-LookVector.Y);	
+	AddControllerYawInput(LookVector.X*Sensitivity);
+	AddControllerPitchInput(-LookVector.Y*Sensitivity);	
 }
 
 void AKSCharacter::InputJump(const FInputActionValue& InputActionValue)

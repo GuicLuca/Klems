@@ -99,7 +99,7 @@ void UOTSessionsSubsystem::FindSessions(int32 MaxSearchResults, const FString& M
 	LastSessionSearch->MaxSearchResults = MaxSearchResults;
 	LastSessionSearch->bIsLanQuery = IOnlineSubsystem::Get()->GetSubsystemName() == "NULL";
 	//LastSessionSearch->QuerySettings.Set(SEARCH_PRESENCE, true, EOnlineComparisonOp::Equals);
-	LastSessionSearch->QuerySettings.Set(FName("MatchType"), MatchType, EOnlineComparisonOp::Equals);
+	//LastSessionSearch->QuerySettings.Set(FName("MatchType"), MatchType, EOnlineComparisonOp::Equals);
 	
 	const ULocalPlayer* LocalPLayer = GetWorld()->GetFirstLocalPlayerFromController();
 	const bool success = SessionInterface->FindSessions(*LocalPLayer->GetPreferredUniqueNetId(), LastSessionSearch.ToSharedRef());

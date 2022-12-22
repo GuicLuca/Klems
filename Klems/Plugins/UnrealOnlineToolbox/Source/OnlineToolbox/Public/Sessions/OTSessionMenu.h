@@ -34,7 +34,9 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void JoinSession(const FOTSessionSearchResult& session);
 
-	
+	UFUNCTION(BlueprintCallable)
+	void WorkOnSession(const FOTSessionSearchResult& session, int32& ms, int32& CurrentPlayer, int32& MaxPlayers,
+				   FString& SessionName, FString& SessionId, bool& bIsPrivate, FString& Password);
 	
 	virtual void NativeDestruct() override;
 	
@@ -57,14 +59,14 @@ protected:
 
 	UPROPERTY(BlueprintAssignable)
 	FSessionMenuJoinComplete OnSessionJoinedComplete;
-	
+
 private:
 	UPROPERTY()
 	UOTSessionsSubsystem* OTSessionsSubsystem;
 
 	void MenuTearDown();
-	void WorkOnSession(const FOTSessionSearchResult& session, int32& ms, int32& CurrentPlayer, int32& MaxPlayers,
-	                   FString& SessionName, FString& SessionId, bool& bIsPrivate, FString& Password);
+	
+	
 
 	FString LobbyMap;
 };

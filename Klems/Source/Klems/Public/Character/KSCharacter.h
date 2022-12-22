@@ -168,6 +168,9 @@ protected:
 	UPROPERTY(BlueprintReadWrite)
 	bool bIsInfected = false;
 
+	UPROPERTY(BlueprintReadWrite,EditAnywhere)
+	float Sensitivity;
+
 private:
 	FTimerHandle MemberTimerHandle;
 	

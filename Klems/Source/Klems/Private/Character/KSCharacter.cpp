@@ -130,7 +130,7 @@ void AKSCharacter::StopRun_Implementation()
 
 void AKSCharacter::SetInfectedMode()
 {
-	if(InfectionDensity >=1)
+	if(InfectionDensity >=1 && !bIsInfected)
 	{
 		bIsInfected = true;
 		

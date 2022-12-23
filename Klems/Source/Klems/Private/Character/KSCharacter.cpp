@@ -143,7 +143,7 @@ void AKSCharacter::SetInfectedMode()
 		{
 			AbilityComponent->AddAbility(ability, this);
 		}
-
+		AbilityComponent->ActiveGameplayTags.AddTag(TAG_Infected);
 		stopInfection();
 	}
 }
@@ -307,7 +307,7 @@ void AKSCharacter::InputMove(const FInputActionValue& InputActionValue)
 void AKSCharacter::InputLook(const FInputActionValue& InputActionValue)
 {
 	const auto LookVector = InputActionValue.Get<FVector2d>();
-	AddControllerYawInput(LookVector.X*Sensitivity);
+	AddControllerYawInput(LookVector.X*Sensitivity); 
 	AddControllerPitchInput(-LookVector.Y*Sensitivity);	
 }
 

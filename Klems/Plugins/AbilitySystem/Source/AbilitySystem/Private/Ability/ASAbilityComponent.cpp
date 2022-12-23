@@ -26,7 +26,7 @@ bool UASAbilityComponent::ReplicateSubobjects(UActorChannel* Channel, FOutBunch*
 void UASAbilityComponent::AddAbility(const TSubclassOf<UASAbility> AbilityClass, AActor* Instigator)
 {
 	if (!ensure(AbilityClass))return;
-
+	if(!GetOwner()) return;
 	if(!GetOwner()->HasAuthority())
 	{
 		ServerAddAbility(AbilityClass, Instigator);
@@ -51,6 +51,7 @@ void UASAbilityComponent::AddAbility(const TSubclassOf<UASAbility> AbilityClass,
 
 bool UASAbilityComponent::RemoveAbility(const FGameplayTag AbilityTag)
 {
+	if(!GetOwner()) return false;
 	if(!GetOwner()->HasAuthority())
 	{
 		ServerRemoveAbility(AbilityTag);
@@ -70,6 +71,7 @@ bool UASAbilityComponent::RemoveAbility(const FGameplayTag AbilityTag)
 
 bool UASAbilityComponent::StartAbility(const FGameplayTag AbilityTag, AActor* Instigator)
 {
+	if(!GetOwner()) return false;
 	if(!GetOwner()->HasAuthority())
 	{
 		ServerStartAbility(AbilityTag, Instigator);
@@ -88,6 +90,7 @@ bool UASAbilityComponent::StartAbility(const FGameplayTag AbilityTag, AActor* In
 
 bool UASAbilityComponent::StopAbility(const FGameplayTag AbilityTag, AActor* Instigator)
 {
+	if(!GetOwner()) return false;
 	if(!GetOwner()->HasAuthority())
 	{
 		ServerStopAbility(AbilityTag, Instigator);
@@ -106,8 +109,9 @@ bool UASAbilityComponent::StopAbility(const FGameplayTag AbilityTag, AActor* Ins
 
 void UASAbilityComponent::BeginPlay()
 {
+	
 	Super::BeginPlay();
-
+	if(!GetOwner()) return;
 	if(!GetOwner()->HasAuthority()) return;;
 	
 	for (const auto Ability : DefaultAbilities)

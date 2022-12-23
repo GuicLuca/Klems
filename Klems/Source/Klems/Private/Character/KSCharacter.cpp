@@ -130,7 +130,7 @@ void AKSCharacter::StopRun_Implementation()
 
 void AKSCharacter::SetInfectedMode()
 {
-	if(InfectionDensity >=1)
+	if(InfectionDensity >=1 && !bIsInfected)
 	{
 		bIsInfected = true;
 		
@@ -143,7 +143,7 @@ void AKSCharacter::SetInfectedMode()
 		{
 			AbilityComponent->AddAbility(ability, this);
 		}
-
+		AbilityComponent->ActiveGameplayTags.AddTag(TAG_Infected);
 		stopInfection();
 	}
 }
@@ -161,7 +161,7 @@ void AKSCharacter::addInfection()
 		{
 			const float infectionDensity = tile->InfectionDensity;
 			auto* attribute = Attributes->GetAttribute(TAG_Attribute_Infection);
-			attribute->SetCurrentValue(attribute->GetCurrentValue()+(infectionDensity/2));
+			attribute->SetCurrentValue(attribute->GetCurrentValue()+(infectionDensity/1.5f));
 			//this->InfectionDensity += infectionDensity;
 			//SetInfectedMode();
 			break;
@@ -307,8 +307,8 @@ void AKSCharacter::InputMove(const FInputActionValue& InputActionValue)
 void AKSCharacter::InputLook(const FInputActionValue& InputActionValue)
 {
 	const auto LookVector = InputActionValue.Get<FVector2d>();
-	AddControllerYawInput(LookVector.X);
-	AddControllerPitchInput(-LookVector.Y);	
+	AddControllerYawInput(LookVector.X*Sensitivity); 
+	AddControllerPitchInput(-LookVector.Y*Sensitivity);	
 }
 
 void AKSCharacter::InputJump(const FInputActionValue& InputActionValue)

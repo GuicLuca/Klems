@@ -37,3 +37,6 @@ UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_Attribute_HeadShotCount);
 // Native modifiers Gameplay Tags
 UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_Modifier_Infection);
 
+//Util for know if a player is infected
+UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_Infected);
+

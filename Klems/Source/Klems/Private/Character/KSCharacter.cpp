@@ -161,7 +161,7 @@ void AKSCharacter::addInfection()
 		{
 			const float infectionDensity = tile->InfectionDensity;
 			auto* attribute = Attributes->GetAttribute(TAG_Attribute_Infection);
-			attribute->SetCurrentValue(attribute->GetCurrentValue()+(infectionDensity/2));
+			attribute->SetCurrentValue(attribute->GetCurrentValue()+(infectionDensity/1.5f));
 			//this->InfectionDensity += infectionDensity;
 			//SetInfectedMode();
 			break;
